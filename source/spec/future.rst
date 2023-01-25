@@ -6,14 +6,14 @@ Future Compatibility - notes for implementors
 notes for implementors of current specification
 -----------------------------------------------
 
-# As JSON can not handle non-numerical quantities like 'Inf' or 'NaN',
-  either an appropriate error message should be generated, or the closest representable
-  numerical value (+/- double_max?) should be used.
+#. As JSON can not handle non-numerical quantities like 'Inf' or 'NaN',
+   either an appropriate error message should be generated, or the closest representable
+   numerical value (+/- double_max?) should be used.
 
-# all values transferred between ECS and sec-node should be validated on both sides.
-  This may be relaxed in future specifications.
-  Errors, which arise from the validation of SEC-node values on the ECS-side should not crash the ECS
-  and should inform the user about this violation of specification along with the data, the validator and why validation failed.
+#. All values transferred between ECS and sec-node should be validated on both sides.
+   This may be relaxed in future specifications.
+   Errors, which arise from the validation of SEC-node values on the ECS-side should not crash the ECS
+   and should inform the user about this violation of specification along with the data, the validator and why validation failed.
 
 
 Data transfer
