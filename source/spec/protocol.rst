@@ -51,8 +51,8 @@ identifier length is limited (<=63 characters).
     - module names on a SEC Node (including the group entries of those modules)
     - accessible names of a module (including the group entries of those parameters) (each module has its own scope)
     - properties
-    - names of elements in a struct_ (each struct has its own scope)
-    - names of variants in an enum_ (each enum has its own scope)
+    - names of elements in a :ref:`struct` (each struct has its own scope)
+    - names of variants in an :ref:`enum` (each enum has its own scope)
     - names of qualifiers
 
 SECoP defined names are usually lowercase, though that is not a restriction (esp. not for module names).
@@ -66,7 +66,7 @@ an underscore and not defined in the following list are reserved for future exte
 When implementing SEC nodes or ECS-clients, a 'MUST-ignore' policy should be applied to unknown
 or additional parts.
 Unknown or malformed messages are to be replied with an appropriate ``ProtocolError`` by a SEC node.
-An ECS-client must ignore the extra data in such messages. See also section `Future Compatibility`_.
+An ECS-client must ignore the extra data in such messages. See also section :ref:`future-compatibility`.
 
 Essentially the connections between an ECS and a SEC node can operate in one of two modes:
 
@@ -108,27 +108,27 @@ either indicating success of the request or flag an error.
      `identification`_       request        ``*IDN?``
           \                  reply          ISSE\ **,SECoP,**\ *version,add.info*
      `description`_          request        ``describe``
-          \                  reply          ``describing␣.␣``\ <`Structure Report`_>
+          \                  reply          ``describing␣.␣``\ <:ref:`structure-report`>
      `activate updates`_     request        ``activate``
           \                  reply          ``active``
      `deactivate updates`_   request        ``deactivate``
           \                  reply          ``inactive``
      `heartbeat`_            request        ``ping␣<identifier>``
-          \                  reply          ``pong␣<identifier>␣``\ <`Data Report`_>
-     `change value`_         request        ``change␣<module>:<parameter>␣``\ <`Value`_>
-          \                  reply          ``changed␣<module>:<parameter>␣``\ <`Data Report`_>
+          \                  reply          ``pong␣<identifier>␣``\ <:ref:`data-report`>
+     `change value`_         request        ``change␣<module>:<parameter>␣``\ <:ref:`value`>
+          \                  reply          ``changed␣<module>:<parameter>␣``\ <:ref:`data-report`>
      `execute command`_      request        ``do␣<module>:<command>`` (**argumentless commands only**)
-          \                  reply          ``done␣<module>:<command>␣``\ <`Data Report`_> (with null as value)
+          \                  reply          ``done␣<module>:<command>␣``\ <:ref:`data-report`> (with null as value)
      `read request`_         request        ``read␣<module>:<parameter>``
-        \                    reply          ``reply␣<module>:<parameter>␣``\ <`Data Report`_>
-     value update_  event    event          ``update␣<module>:<parameter>␣``\ <`Data Report`_>
-     `error reply`_          reply          ``error_<action>␣<specifier>␣``\ <`Error Report`_>
+        \                    reply          ``reply␣<module>:<parameter>␣``\ <:ref:`data-report`>
+     value update_  event    event          ``update␣<module>:<parameter>␣``\ <:ref:`data-report`>
+     `error reply`_          reply          ``error_<action>␣<specifier>␣``\ <:ref:`error-report`>
     ======================= ============== ==================
 
 :note:
     This means that ``change`` needs to be implemented, even if only readonly accessibles are present.
     In this case, a ``change`` message will naturally be replied with an ``error_change``
-    message with an `error-class`_ of "ReadOnly" and not with an "ProtocolError".
+    message with an :ref:`error class <error-classes>` of "ReadOnly" and not with an "ProtocolError".
 
 .. table:: extended messages (implementation is optional)
 
@@ -143,9 +143,9 @@ either indicating success of the request or flag an error.
      `deactivate updates`_   request        ``deactivate␣<module>``
        module-wise           reply          ``inactive␣<module>``
      `heartbeat`_            request        ``ping``
-      with empty identifier  reply          ``pong␣␣``\ <`Data Report`_>
-     `execute command`_      request        ``do␣<module>:<command>␣``\ (\ Value_ | ``null``)
-          \                  reply          ``done␣<module>:<command>␣``\ <`Data Report`_>
+      with empty identifier  reply          ``pong␣␣``\ <:ref:`data-report`>
+     `execute command`_      request        ``do␣<module>:<command>␣``\ (\ :ref:`value` | ``null``)
+          \                  reply          ``done␣<module>:<command>␣``\ <:ref:`data-report`>
     ======================= ============== ==================
 
 
@@ -237,7 +237,7 @@ Description
 ~~~~~~~~~~~
 
 The next messages normally exchanged are the description request and
-reply. The reply contains the `Structure report`_ i.e. a structured JSON object describing the name of
+reply. The reply contains the :ref:`structure-report`, i.e. a structured JSON object describing the name of
 modules exported and their parameters, together with the corresponding
 properties.
 
@@ -290,11 +290,11 @@ Update
 ~~~~~~
 
 When activated, update messages are delivered without explicit request
-from the client. The value is a `Data report`_, i.e. a JSON array with the value as its first
-element, and an JSON object containing the `Qualifiers`_ as its second element.
+from the client. The value is a :ref:`data-report`, i.e. a JSON array with the value as its first
+element, and an JSON object containing the :ref:`qualifiers` as its second element.
 
 If an error occurs while determining a parameter, an ``error_update`` message has to be sent,
-which includes an <`Error Report`_> stating the problem.
+which includes an <:ref:`error-report`> stating the problem.
 
 Example:
 
@@ -375,7 +375,7 @@ and the value to be set. The value is JSON formatted.
 As soon as the set-value is read back from the hardware, all clients,
 having activated the parameter/module in question, get an "update" message.
 After all side-effects are communicated, a "changed" reply is then send, containing a
-`Data report`_ of the read-back value.
+:ref:`data-report` of the read-back value.
 
 :Remarks:
 
@@ -437,11 +437,11 @@ transferred via the ``status`` parameter.
 If a command is specified with an argument, the actual argument is given in
 the data part as a JSON-value. This may be also a JSON-object if the datatype of
 the argument specifies that
-(i.e. the type of the single argument can also be a struct_ or tuple_, see `data types`_).
+(i.e. the type of the single argument can also be a :ref:`struct` or :ref:`tuple`, see :ref:`data-types`).
 The types of arguments must conform to the declared datatypes from the datatype of the command argument.
 
 A command may also have a return value, which may also be structured.
-The "done" reply always contains a `Data report`_ with the return value.
+The "done" reply always contains a :ref:`data-report` with the return value.
 If no value is returned, the data part is set to "null".
 The "done" message should be returned quickly, the time scale should be in the
 order of the time needed for communications. Still, all side-effects need to be realized
@@ -468,11 +468,13 @@ Example:
   < done t1:stop [null,{"t":1505396349.743}]
 
 
+.. _error-reply:
+
 Error Reply
 ~~~~~~~~~~~
 
 Contains an error class from the list below as its second item (the specifier).
-The third item of the message is an `Error report`_, containing the request message
+The third item of the message is an :ref:`error-report`, containing the request message
 (minus line endings) as a string in its first element, a (short) human readable text
 as its second element. The third element is a JSON-Object, containing possibly
 implementation specific information about the error (stack dump etc.).
@@ -490,7 +492,7 @@ Example:
   > meas:volt?
   < error_meas:volt?  ["ProtocolError","unknown action", {}]
 
-.. _`error-class`: #error-classes
+.. _error-classes:
 
 _`Error Classes`:
     Error classes are divided into two groups: persisting errors and retryable errors.
@@ -528,7 +530,7 @@ _`Error Classes`:
           - The requested parameter change or Command can not be performed as the argument value is not
             in the allowed range specified by the ``datainfo`` property.
             This also happens if an unspecified Enum variant is tried to be used, the size of a Blob or String
-            does not match the limits given in the descriptive data, or if the number of elements in an array_
+            does not match the limits given in the descriptive data, or if the number of elements in an :ref:`array`
             does not match the limits given in the descriptive data.
 
         * - BadJSON
@@ -601,7 +603,7 @@ Logging is an optional message, i.e. a sec-node is not enforced to implement it.
   :"debug":
     All log messages are logged remotely.
 
-  A SEC-node should reply with an `error-report`_ (``ProtocolError``) if it doesn't implement this message.
+  A SEC-node should reply with an :ref:`error-report` (``ProtocolError``) if it doesn't implement this message.
   Otherwise it should mirror the request, which may be updated with the logging-level actually in use.
   i.e. if an SEC-node does not implement the "debug" level, but "error" and "info" and an ECS request "debug" logging, the
   reply should contain "info" (as this is 'closer' to the original request than "error") or ``false``).
@@ -634,6 +636,8 @@ another example::
   < logging mod1 false
 
 
+.. _heartbeat:
+
 Heartbeat
 ~~~~~~~~~
 
@@ -642,8 +646,8 @@ a heartbeat may be sent. The second part of the message (the id) must
 not contain a space and should be short and not be re-used.
 It may be omitted. The reply will contain exactly the same id.
 
-A SEC node replies with a ``pong`` message with a `Data report`_ of a null value.
-The `Qualifiers`_ part SHOULD only contain the timestamp (as member "t") if the
+A SEC node replies with a ``pong`` message with a :ref:`data-report` of a null value.
+The :ref:`qualifiers` part SHOULD only contain the timestamp (as member "t") if the
 SEC node supports timestamping.
 This can be used to synchronize the time between ECS and SEC node.
 

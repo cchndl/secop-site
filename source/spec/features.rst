@@ -18,4 +18,4 @@ indicates to the ECS that it may handle this functionality in a specific way.
 
           SECoP target = ECS target - offset
 
-    mandatory parameter: offset_
+    mandatory parameter: offset

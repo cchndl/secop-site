@@ -1,4 +1,4 @@
-.. _`future compatibility`: #future-compatibility-notes-for-implementors
+.. _future-compatibility:
 
 Future Compatibility - notes for implementors
 =============================================
@@ -132,7 +132,7 @@ Essentially this boils down to:
      the ``:parameter`` part)
   #) same for error class
      (i.e. treat ``WrongType:MustBeInt`` as ``WrongType``, ignoring the ``:MustBeInt`` part)
-  #) upon parsing a value, when you know it should be one element from an enum_ (which SHOULD be transported as integer),
+  #) upon parsing a value, when you know it should be one element from an :ref:`enum` (which SHOULD be transported as integer),
      if you find a string instead and that string is one of the names from the Enum, use that entry.
   #) check newer versions of the specification and check the issues as well, as the above may change.
 

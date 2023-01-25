@@ -1,3 +1,5 @@
+.. _descriptive-data:
+
 Descriptive Data
 ================
 
@@ -195,7 +197,7 @@ Mandatory Parameter Properties
     Indicates whether this parameter may be changed by an ECS, or not.
 
 ``"datainfo"``:
-    mandatory datatype of the accessible, see `Data Types`_.
+    mandatory datatype of the accessible, see :ref:`data-types`.
     This is always a JSON-Object with a single entry mapping the name of the datatype as key to
     a JSON-object containing the datatypes properties.
 

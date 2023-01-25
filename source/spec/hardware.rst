@@ -30,7 +30,7 @@ have to be unique within an SEC node, accessible names have to be unique
 within a module. There are two basic types of accessibles: parameters and commands.
 
 Module and accessible names should be in English (incl. acronyms), using
-only ASCII letters + digits and some additional characters (see section `Protocol`_).
+only ASCII letters + digits and some additional characters (see section :doc:`protocol`).
 The maximum name length is 63 characters.
 
 Parameter:
@@ -59,14 +59,14 @@ be extended continuously.
 Basic Parameters
 ~~~~~~~~~~~~~~~~
 
-parameter ``"value"``:
+parameter ``"value"``
     a parameter representing the *main* value of a readable module.
 
 .. _BUSY:
 
-parameter ``"status"``:
-    (a tuple_ of two elements: a status with predefined values
-    from an enum_ as "IDLE","BUSY","ERROR", and a describing text).
+parameter ``"status"``
+    (a :ref:`tuple` of two elements: a status with predefined values
+    from an :ref:`enum` as "IDLE","BUSY","ERROR", and a describing text).
 
     .. table:: assignment of status code groups
 
@@ -82,13 +82,13 @@ parameter ``"status"``:
 
     where YZ might be any combination of digits, in simple cases typically 00.
 
-parameter ``"pollinterval"``:
-    a hint to the module for the polling interval in seconds, type is always a double_.
+parameter ``"pollinterval"``
+    a hint to the module for the polling interval in seconds, type is always a :ref:`double`.
 
-parameter ``"target"``:
+parameter ``"target"``
     present, if the modules main value is to be changeable remotely, i.e. it is at least a Writable
 
-command ``"stop"``:
+command ``"stop"``
      mandatory command on a drivable.
      When a modules target is changed (or, if present, when the ``go`` command is sent),
      it is 'driving' to a new value until the target is reached or until its stop command
@@ -97,7 +97,7 @@ command ``"stop"``:
      to a value close to the present one. Then it SHOULD act as if this value would have
      been the initial target.
 
-command ``"go"``:
+command ``"go"``
      optional command for starting an action. If the ``go`` command is present,
      changing any parameter (especially the 'target' parameter) does not yet initiate any
      action leading to a BUSY state.
@@ -110,21 +110,21 @@ command ``"go"``:
 Ramping
 ~~~~~~~
 
-parameter ``"ramp"``:
+parameter ``"ramp"``
     (writable parameter, desired ramp. Units: main units/min)
 
-parameter ``"setpoint"``:
+parameter ``"setpoint"``
     (ramping setpoint, read only)
 
-parameter ``"time_to_target"``:
-    (read only double_, expected time to reach target in seconds)
+parameter ``"time_to_target"``
+    (read only :ref:`double`, expected time to reach target in seconds)
 
 
 Modes
 ~~~~~
 
 parameter ``"mode"``:
-    A parameter of datatype enum_, for selecting the operation mode of a module.
+    A parameter of datatype :ref:`enum`, for selecting the operation mode of a module.
     The available operation modes can not be predefined in the specification, since
     they depend on the specific module.
 
@@ -195,8 +195,8 @@ additional codes for parameter ``"status"``:
                                                             even after ``clear_errors``.
          ====== ================ ========== ============== =========================================
 
-    For the SEC node, it is recommended to use above names (second column) for the status enum_ type.
-    For the ECS, the codes (and not the names) of the status enum_ are relevant for the meaning.
+    For the SEC node, it is recommended to use above names (second column) for the status :ref:`enum` type.
+    For the ECS, the codes (and not the names) of the status :ref:`enum` are relevant for the meaning.
 
     The distinction between the status value 360 - 380 is important, if during a target change
     there is a period, where the value changes in a continuous way and measurements might be
@@ -260,8 +260,8 @@ Coupled Modules
 parameter ``"controlled_by"``:
    The control mechanism of a module might be coupled to another module (both modules are Drivable or Writable).
    This coupling is indicated by the ``controlled_by`` parameter (readonly).
-   The datatype of the ``controlled_by`` parameter must be an enum_, with the names being
-   module names or ``self``. The enum_ value of ``self`` must be 0.
+   The datatype of the ``controlled_by`` parameter must be an :ref:`enum`, with the names being
+   module names or ``self``. The :ref:`enum` value of ``self`` must be 0.
    A module with a ``controlled_by`` parameter indicates, that it may be controlled
    by one of the named modules.
 
@@ -286,8 +286,8 @@ parameter ``"controlled_by"``:
    switches over to module B and the ``controlled_by`` parameter of module B has to be set to ``self``.
    Please notice that in addition, the ``control_active`` parameters of module A and module B have
    to be set correctly (see next section) before sending the reply to a ``target``
-   change or a ``go`` command as stated before.    
-   
+   change or a ``go`` command as stated before.
+
    :remark: In case a module A controls several other modules, e.g. a temperature module of a liquid helium cryostat
             controlling the power output (module B) and the helium pressure for cooling (module C), additional parameters
             may be needed for selecting the control mode of module A. See for example the parameter
@@ -334,7 +334,7 @@ Limits and Offset
 parameter ``target_limits``:
     In addition to the range given in the ``datainfo`` property of the ``target`` parameter,
     a SEC-Node might offer changeable limits restricting the allowed range even more.
-    ``target_limits`` is structured as a tuple_ with two numeric members indicating
+    ``target_limits`` is structured as a :ref:`tuple` with two numeric members indicating
     the lower and upper end of a valid interval for the setting of the ``target`` parameter.
     The ``datainfo`` property of the ``target`` parameter must match the members of the
     ``datainfo`` property of ``target_limits``.
@@ -345,7 +345,7 @@ parameter ``target_limits``:
 
 parameter ``offset``:
     A storage for an offset to be applied when converting SECoP values to ECS values.
-    See feature `HasOffset`_.
+    See feature :ref:`HasOffset <HasOffset>`.
 
 
 Communication
@@ -354,7 +354,7 @@ Communication
 command ``"communicate"``:
      Used for direct communication with hardware, with proprietary commands. It is useful
      for debugging purposes, or if the implementor wants to give access to parameters not
-     supported by the driver. The datatype might be string_, or any other datatype suitable
+     supported by the driver. The datatype might be :ref:`string`, or any other datatype suitable
      to the protocol of the device. The ``communicate`` command  is meant to be used in
      module with the ``Communicator`` interface class.
 
@@ -367,15 +367,15 @@ Definition: Properties
     The static information about parameters, modules and SEC nodes is
     constructed from properties with predefined names and meanings.
 
-For a list of pre-defined properties see `Descriptive Data`_.
+For a list of pre-defined properties see :ref:`descriptive-data`.
 
+
+.. _data-report:
 
 Data report
 -----------
 A JSON array with the value of a parameter as its first element,
-and an JSON object containing the Qualifiers_ for this value as its second element.
-
-See also: `Data-report`_.
+and an JSON object containing the :ref:`qualifiers` for this value as its second element.
 
 :Remark:
 
@@ -383,24 +383,30 @@ See also: `Data-report`_.
     These are to be ignored for implementations of the current specification
 
 
+.. _error-report:
+
 Error report
 ------------
-An error report is used in a `error reply`_ indicating that the requested action could
+An error report is used in a :ref:`error-reply` indicating that the requested action could
 not be performed as request or that other problems occurred.
-The error report is a JSON-array containing the name of one of the `Error Classes`_, a human readable string
+The error report is a JSON-array containing the name of one of the :ref:`Error
+classes <error-classes>`, a human readable string
 and as a third element a JSON-object containing extra error information,
 which may include the timestamp (as key "t") and possible additional
 implementation specific information about the error (stack dump etc.).
 
-See also: `Error-report`_.
 
+.. _structure-report:
 
 Structure report
 ----------------
 The structure report is a structured JSON construct describing the structure of the SEC node.
 This includes the SEC-node properties, the modules, their module-properties and accessibles
 and the properties of the accessibles.
-For details see `descriptive data`_.
+For details see :ref:`descriptive-data`.
+
+
+.. _value:
 
 Value
 -----
@@ -422,6 +428,8 @@ Values are transferred as a JSON-Value.
     used as a workaround. See also :RFC:`7493`
 
 
+.. _qualifiers:
+
 Qualifiers
 ----------
 
@@ -441,7 +449,7 @@ Currently 2 qualifiers are defined:
 
     :Note:
         To check if a SEC node supports time stamping, a `ping` request can be sent.
-        (See also `heartbeat`_).
+        (See also :ref:`heartbeat`).
 
 ``"e"``:
    the uncertainty of the quantity. MUST be in the same units
@@ -478,7 +486,7 @@ The last one in the list must be one of the base classes listed below.
 Base classes
 ~~~~~~~~~~~~
 
-``"Communicator"``:
+``"Communicator"``
     The main purpose of the module is communication.
     It may have none of the predefined parameters of the other classes.
 
@@ -487,19 +495,19 @@ Base classes
 
 .. _Readable:
 
-``"Readable"``:
+``"Readable"``
     The main purpose is to represent readable values (i.e. from a Sensor).
     It has at least a ``value`` and a ``status`` parameter.
 
 .. _Writable:
 
-``"Writable"``:
+``"Writable"``
     The main purpose is to represent fast settable values (i.e. a switch).
     It must have a ``target`` parameter in addition to what a `Readable`_ has.
 
 .. _Drivable:
 
-``"Drivable"``:
+``"Drivable"``
     The main purpose is to represent slow settable values (i.e. a temperature or a motorized needle valve).
     It must have a ``stop`` command in addition to what a `Writable`_ has.
     Also, the ``status`` parameter will indicate a `BUSY`_ state for a longer-lasting operations.

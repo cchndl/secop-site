@@ -1,4 +1,4 @@
-.. _`Data Types`: #data-info
+.. _data-types:
 
 Data info
 =========
@@ -34,7 +34,7 @@ Here is an overview of all defined data types:
 
 Depending on the data type, there are different sets of data-properties available.
 
-.. _double: #floating-point-numbers-double
+.. _double:
 
 Floating Point Numbers: ``double``
 ----------------------------------
@@ -118,7 +118,7 @@ as JSON-number
 
 example: ``3.14159265``
 
-.. _scaled: #scaled-integer-scaled
+.. _scaled:
 
 Scaled Integer: ``scaled``
 --------------------------
@@ -184,8 +184,8 @@ for example ``1255`` meaning 125.5 in the above example.
 
 :related issue: `SECoP Issue 44: Scaled integers`_.
 
-.. _int: #integer-int
-.. _integer: #integer-int
+.. _int:
+.. _integer:
 
 Integer: ``int``
 ----------------
@@ -217,8 +217,8 @@ as JSON-number
 
 example: ``-55``
 
-.. _bool: #boolean-bool
-.. _boolean: #boolean-bool
+.. _bool:
+.. _boolean:
 
 Boolean: ``bool``
 -----------------
@@ -232,7 +232,7 @@ Transport
 ``true`` or ``false``
 
 
-.. _enum: #enumerated-type-enum
+.. _enum:
 
 Enumerated Type: ``enum``
 -------------------------
@@ -255,7 +255,7 @@ as JSON-number, the client may perform a mapping back to the name
 example: ``200``
 
 
-.. _string: #string-string
+.. _string:
 
 String: ``string``
 ------------------
@@ -288,7 +288,7 @@ as JSON-string
 
 example: ``"Hello\n\u2343World!"``
 
-.. _blob: #binary-large-object-blob
+.. _blob:
 
 Binary Large Object: ``blob``
 -----------------------------
@@ -313,7 +313,7 @@ as single-line base64 (see :RFC:`4648`) encoded JSON-string
 
 example: ``"AA=="`` (a single, zero valued byte)
 
-.. _array: #sequence-of-equally-typed-items-array
+.. _array:
 
 Sequence of Equally Typed Items : ``array``
 -------------------------------------------
@@ -343,7 +343,7 @@ as JSON-array
 
 example: ``[3,4,7,2,1]``
 
-.. _tuple: #finite-sequence-of-items-with-individually-defined-type-tuple
+.. _tuple:
 
 Finite Sequence of Items with Individually Defined Type: ``tuple``
 ------------------------------------------------------------------
@@ -364,7 +364,7 @@ as JSON-array
 ``[300,"accelerating"]``
 
 
-.. _Struct: #collection-of-named-items-struct
+.. _Struct:
 
 Collection of Named Items: ``struct``
 -------------------------------------
@@ -401,7 +401,7 @@ example: ``{"x": 0.5, "y": 1}``
 :related issue: `SECoP Issue 35: Partial structs`_
 
 
-.. _command: #command-flag-for-accessibles
+.. _command:
 
 Command-flag for Accessibles
 ----------------------------
