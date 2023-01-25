@@ -123,7 +123,7 @@ parameter ``"time_to_target"``
 Modes
 ~~~~~
 
-parameter ``"mode"``:
+parameter ``"mode"``
     A parameter of datatype :ref:`enum`, for selecting the operation mode of a module.
     The available operation modes can not be predefined in the specification, since
     they depend on the specific module.
@@ -135,7 +135,7 @@ parameter ``"mode"``:
         {"type": "enum", "members": {"DISABLED": 0, "STANDBY": 30, "PREPARED": 50}}
 
 
-additional codes for parameter ``"status"``:
+additional codes for parameter ``"status"``
     The meaning of the operation modes SHOULD be described in the description.
 
     .. table:: assignment of sub status (state within the generic state machine)
@@ -206,14 +206,15 @@ additional codes for parameter ``"status"``:
     Any undefined status code has to be treated like a generic subcode of the given code number,
     i.e. 376 should be treated as a BUSY_Ramping until it is defined otherwise in the specification.
 
-    :related issues:
-        `SECoP Issue 37: Clarification of status`_,
-        `SECoP Issue 59: set_mode and mode instead of some commands`_
+    .. admonition:: Related Issues
 
-    :Note:
+        | `SECoP Issue 37: Clarification of status`_
+        | `SECoP Issue 59: set_mode and mode instead of some commands`_
+
+    .. note::
         the behavior of a module in each of the predefined states is not yet 100% defined.
 
-    :Note:
+    .. note::
         a module only need to declare the status values which it implements. i.e. an Readable module
         does not need a BUSY status.
 
@@ -222,7 +223,7 @@ additional codes for parameter ``"status"``:
 
 .. image:: images/status_diagram.svg
 
-command ``"hold"``:
+command ``"hold"``
      optional command on a drivable. Stay more or less where you are, cease
      movement, be ready to continue soon, target value is kept. Continuation can be
      trigger with ``go``, or if not present, by putting the target parameter to its
@@ -233,7 +234,7 @@ command ``"shutdown"``
      When this command is sent, and the status is DISABLED,
      it is safe to switch off the related device.
 
-:Note:
+.. note::
     Going to the DISABLED state, may also be triggered by changing the mode to DISABLED.
     If the implementor for security reason wants to prohibit any action after a shutdown,
     this should only be achieved by a shutdown command, as disabling the module should be
@@ -247,7 +248,7 @@ Error handling
 command ``"reset"``
      optional command for putting the module to a state predefined by the implementation.
 
-command ``"clear_error"``:
+command ``"clear_error"``
      This command tries to clear an error state. It may be called when status is ERROR,
      and the command will try to transform status to IDLE or WARN. If it can not
      do it, the status should not change or change to an other ERROR state before
@@ -257,7 +258,7 @@ command ``"clear_error"``:
 Coupled Modules
 ~~~~~~~~~~~~~~~
 
-parameter ``"controlled_by"``:
+parameter ``"controlled_by"``
    The control mechanism of a module might be coupled to another module (both modules are Drivable or Writable).
    This coupling is indicated by the ``controlled_by`` parameter (readonly).
    The datatype of the ``controlled_by`` parameter must be an :ref:`enum`, with the names being
@@ -288,12 +289,12 @@ parameter ``"controlled_by"``:
    to be set correctly (see next section) before sending the reply to a ``target``
    change or a ``go`` command as stated before.
 
-   :remark: In case a module A controls several other modules, e.g. a temperature module of a liquid helium cryostat
+   .. note:: In case a module A controls several other modules, e.g. a temperature module of a liquid helium cryostat
             controlling the power output (module B) and the helium pressure for cooling (module C), additional parameters
             may be needed for selecting the control mode of module A. See for example the parameter
             ``"_automatic_nv_pressure_mode"`` in the example of a liquid helium cooled cryostat.
 
-parameter ``"control_active"``:
+parameter ``"control_active"``
    A readonly flag indicating whether a drivable or writable module is currently actively controlling.
    On a drivable without control_active parameter or with
    control_active=true, the system is trying to bring the value to the target.
@@ -331,7 +332,7 @@ parameter ``"control_active"``:
 Limits and Offset
 ~~~~~~~~~~~~~~~~~
 
-parameter ``target_limits``:
+parameter ``target_limits``
     In addition to the range given in the ``datainfo`` property of the ``target`` parameter,
     a SEC-Node might offer changeable limits restricting the allowed range even more.
     ``target_limits`` is structured as a :ref:`tuple` with two numeric members indicating
@@ -343,7 +344,7 @@ parameter ``target_limits``:
 
 .. _offset:
 
-parameter ``offset``:
+parameter ``offset``
     A storage for an offset to be applied when converting SECoP values to ECS values.
     See feature :ref:`HasOffset <HasOffset>`.
 
@@ -351,7 +352,7 @@ parameter ``offset``:
 Communication
 ~~~~~~~~~~~~~
 
-command ``"communicate"``:
+command ``"communicate"``
      Used for direct communication with hardware, with proprietary commands. It is useful
      for debugging purposes, or if the implementor wants to give access to parameters not
      supported by the driver. The datatype might be :ref:`string`, or any other datatype suitable
@@ -377,7 +378,7 @@ Data report
 A JSON array with the value of a parameter as its first element,
 and an JSON object containing the :ref:`qualifiers` for this value as its second element.
 
-:Remark:
+.. admonition:: Remark
 
     future revisions may append additional elements.
     These are to be ignored for implementations of the current specification
@@ -412,7 +413,7 @@ Value
 -----
 Values are transferred as a JSON-Value.
 
-:Programming Hint:
+.. admonition:: Programming Hint
 
     Some JSON libraries do not allow all JSON values in their (de-)serialization functions.
     Whether or not a JSON value is a valid JSON text, is controversial,
@@ -439,7 +440,7 @@ They are collected as named values in a JSON-object.
 
 Currently 2 qualifiers are defined:
 
-``"t"``:
+``"t"``
     The timestamp when the parameter has changed or was verified/measured (when no timestamp
     is given, the ECS may use the arrival time of the update message as the timestamp).
     It SHOULD be given, if the SEC node has a synchronized time,
@@ -447,11 +448,11 @@ Currently 2 qualifiers are defined:
     represented as a number, in general a floating point when the resolution
     is better than 1 second.
 
-    :Note:
+    .. note::
         To check if a SEC node supports time stamping, a `ping` request can be sent.
         (See also :ref:`heartbeat`).
 
-``"e"``:
+``"e"``
    the uncertainty of the quantity. MUST be in the same units
    as the value. So far the interpretation of "e" is not fixed.
    (sigma vs. RMS difference vs. ....)
@@ -479,7 +480,7 @@ first) and is stored in the module-property `interface_classes`.
 The ECS chooses the first class from the list which is known to it.
 The last one in the list must be one of the base classes listed below.
 
-:Remark:
+.. admonition:: Remark
 
     The list may also be empty, indicating that the module in question does not even conform to the Readable class!
 

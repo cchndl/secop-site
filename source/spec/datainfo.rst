@@ -41,7 +41,7 @@ Floating Point Numbers: ``double``
 
 Datatype to be used for all physical quantities.
 
-:Note:
+.. note::
     The ECS SHOULD use internally IEEE-754 double floating point values and MUST support AT LEAST
     the full IEEE-754 single float value range and precision. However, NaN, infinite and
     denormalized numbers do not need to be supported, as JSON can't transport those 'values'.
@@ -49,18 +49,21 @@ Datatype to be used for all physical quantities.
     If the relative resolution is not given or not better than 1.2e-7, single precision floats
     may be used in the ECS.
 
-    :related issue: `SECoP Issue 42: Requirements of datatypes`_
+    .. admonition:: Related Issue
+
+       `SECoP Issue 42: Requirements of datatypes`_
+
 
 Optional Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"min"``:
+``"min"``
     lower limit. if min is omitted, there is no lower limit
 
-``"max"``:
+``"max"``
     upper limit. if max is omitted, there is no upper limit
 
-:Note:
+.. note::
     When a SEC Node receives a ``"change"`` or ``"do"`` message with a value outside
     the allowed range [``"min"``, ``"max"``], it MUST reply with an error message.
     For readonly parameters, [``"min"``, ``"max"``] indicate a trusted range.
@@ -71,19 +74,21 @@ Optional Data Properties
     than change its value just to comply with the specified range.
     The decision, how to treat such values is left to the ECS.
 
-``"unit"``:
+``"unit"``
     string giving the unit of the parameter.
 
     SHOULD be given, if meaningful. Unitless if omitted or empty string.
     Preferably SI-units (including prefix) SHOULD be used.
 
-    :related: `SECoP Issue 43: Parameters and units`_
+    .. admonition:: Related Issue
 
-``"absolute_resolution"``:
+       `SECoP Issue 43: Parameters and units`_
+
+``"absolute_resolution"``
     JSON-number specifying the smallest difference between distinct values.
     default value: 0
 
-``"relative_resolution"``:
+``"relative_resolution"``
     JSON-number specifying the smallest relative difference between distinct values:
 
     ``abs(a-b) <= relative_resolution * max(abs(a),abs(b))``
@@ -95,9 +100,11 @@ Optional Data Properties
 
     ``max(absolute_resolution, abs(value) * relative_resolution)``
 
-    :related: `SECoP Issue 49: Precision of Floating Point Values`_
+    .. admonition:: Related Issue
 
-``"fmtstr"``:
+       `SECoP Issue 49: Precision of Floating Point Values`_
+
+``"fmtstr"``
     string as a hint on how to format numeric parameters for the user.
     default value: "%.6g"
 
@@ -131,10 +138,10 @@ capabilities, where floating point calculation is a major effort.
 Mandatory Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"scale"``:
+``"scale"``
     a (numeric) scale factor to be multiplied with the transported integer
 
-``"min"``, ``"max"``:
+``"min"``, ``"max"``
     The limits of the transported integer. ``<min>`` <= ``<max>``.
     The limits of the represented floating point value are ``<min>*<scale>, <max>*<scale>``
     See also the note on the ``"min"`` and ``"max"`` properties of the  datatype.
@@ -142,15 +149,15 @@ Mandatory Data Properties
 Optional Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"unit"``:
+``"unit"``
     string giving the unit of the parameter. (see datatype )
 
-``"absolute_resolution"``:
+``"absolute_resolution"``
     JSON-number specifying the smallest difference between distinct values.
 
     default value: ``<scale>``
 
-``"relative_resolution"``:
+``"relative_resolution"``
     JSON-number specifying the smallest relative difference between distinct values:
 
     ``abs(a-b) <= relative_resolution * max(abs(a),abs(b))``
@@ -162,9 +169,11 @@ Optional Data Properties
 
     ``max(absolute_resolution, abs(value) * relative_resolution)``
 
-    :related: `SECoP Issue 49: Precision of Floating Point Values`_
+    .. admonition:: Related Issue
 
-``"fmtstr"``:
+       `SECoP Issue 49: Precision of Floating Point Values`_
+
+``"fmtstr"``
     string as a hint on how to format numeric parameters for the user.
     default value: "%.<n>f" where <n> = max(0,-floor(log10(scale)))
 
@@ -181,8 +190,9 @@ an integer JSON-number
 
 for example ``1255`` meaning 125.5 in the above example.
 
+.. admonition:: Related Issue
 
-:related issue: `SECoP Issue 44: Scaled integers`_.
+   `SECoP Issue 44: Scaled integers`_.
 
 .. _int:
 .. _integer:
@@ -198,13 +208,13 @@ with 32bit float too.
 
 Mandatory Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-``"min"``, ``"max"``:
+``"min"``, ``"max"``
    integer limits, ``<min>`` <= ``<max>``
 
 Optional Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"unit"``:
+``"unit"``
     string giving the unit of the parameter. (see datatype Double_)
 
 Example
@@ -225,7 +235,10 @@ Boolean: ``bool``
 
 Syntax
 ~~~~~~
-``{"type": "bool"}``
+
+.. code:: json
+
+   {"type": "bool"}
 
 Transport
 ~~~~~~~~~
@@ -239,14 +252,17 @@ Enumerated Type: ``enum``
 
 Mandatory Data Property
 ~~~~~~~~~~~~~~~~~~~~~~~
-``"members"``:
+``"members"``
     a JSON-object: ``{<name>: <value>, ...}``
 
     ``name``\ s are strings, ``value``\ s are (small) integers, both ``name``\ s and ``value``\ s MUST be unique
 
 Example
 ~~~~~~~
-``{"type": "enum", "members": {"IDLE": 100, "WARN": 200, "BUSY": 300, "ERROR": 400}}``
+
+.. code:: json
+
+   {"type": "enum", "members": {"IDLE": 100, "WARN": 200, "BUSY": 300, "ERROR": 400}}
 
 Transport
 ~~~~~~~~~
@@ -263,24 +279,27 @@ String: ``string``
 Optional Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"maxchars"``:
+``"maxchars"``
     the maximum length of the string in UTF-8 code points, counting the number of characters (**not** bytes!)
 
-    :note:
+    .. note::
         an UTF-8 encoded character may occupy up to 4 bytes.
         Also the end-of-string marker may need another byte for storage.
 
-``"minchars"``:
+``"minchars"``
     the minimum length, default is 0
 
-``"isUTF8"``:
+``"isUTF8"``
     boolean, if UTF8 character set is allowed for values, or if the value is allowed only
     to contain 7-bit ASCII characters (i.e. only code points < 128), each occupying a single byte.
     Defaults to **false** if not given.
 
 Example
 ~~~~~~~
-``{"type": "string", "maxchars": 80}``
+
+.. code:: json
+
+   {"type": "string", "maxchars": 80}
 
 Transport
 ~~~~~~~~~
@@ -295,17 +314,20 @@ Binary Large Object: ``blob``
 
 Mandatory Data Property
 ~~~~~~~~~~~~~~~~~~~~~~~
-``"maxbytes"``:
+``"maxbytes"``
     the maximum length, counting the number of bytes (**not** the size of the encoded string)
 
 Optional Data Property
 ~~~~~~~~~~~~~~~~~~~~~~
-``"minbytes"``:
+``"minbytes"``
    the minimum length, default is 0
 
 Example
 ~~~~~~~
-``{"type": "blob", "min": 1, "max": 64}``
+
+.. code:: json
+
+   {"type": "blob", "min": 1, "max": 64}
 
 Transport
 ~~~~~~~~~
@@ -321,21 +343,24 @@ Sequence of Equally Typed Items : ``array``
 Mandatory Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"members"``:
+``"members"``
     the datatype of the elements
 
-``"maxlen"``:
+``"maxlen"``
     the maximum length, counting the number of elements
 
 Optional Data Property
 ~~~~~~~~~~~~~~~~~~~~~~
 
-``"minlen"``:
+``"minlen"``
     the minimum length, default is 0
 
 Example
 ~~~~~~~
-``{"type": "array", "min": 3, "max": 10, "members": {"type": "int", "min": 0, "max": 9}}``
+
+.. code:: json
+
+   {"type": "array", "min": 3, "max": 10, "members": {"type": "int", "min": 0, "max": 9}}
 
 Transport
 ~~~~~~~~~
@@ -350,12 +375,15 @@ Finite Sequence of Items with Individually Defined Type: ``tuple``
 
 Mandatory Data Property
 ~~~~~~~~~~~~~~~~~~~~~~~
-``"members"``:
+``"members"``
     a JSON array listing the datatypes of the members
 
 Example
 ~~~~~~~
-``{"type": "tuple", "members": [{"type": "int", "min": 0, "max": 999}, {"type": "string", "maxchars": 80}]}``
+
+.. code:: json
+
+   {"type": "tuple", "members": [{"type": "int", "min": 0, "max": 999}, {"type": "string", "maxchars": 80}]}
 
 Transport
 ~~~~~~~~~
@@ -371,12 +399,12 @@ Collection of Named Items: ``struct``
 
 Mandatory Data Property
 ~~~~~~~~~~~~~~~~~~~~~~~
-``"members"``:
+``"members"``
     a JSON object containing the names and datatypes of the members
 
 Optional Data Property
 ~~~~~~~~~~~~~~~~~~~~~~
-``"optional"``:
+``"optional"``
     The names of optional struct elements. When "optional" is omitted, all struct elements are optional.
     This means that a SEC node not implementing partial structs has to specify ``optional=[]`` in all structs.
 
@@ -390,7 +418,10 @@ Optional Data Property
 
 Example
 ~~~~~~~
-``{"type": "struct", "members": {"y": {"type": "double"}, "x": {"type": "enum", "members": {"On": 1, "Off": 0}}}}``
+
+.. code:: json
+
+   {"type": "struct", "members": {"y": {"type": "double"}, "x": {"type": "enum", "members": {"On": 1, "Off": 0}}}}
 
 Transport
 ~~~~~~~~~
@@ -398,7 +429,9 @@ as JSON-object
 
 example: ``{"x": 0.5, "y": 1}``
 
-:related issue: `SECoP Issue 35: Partial structs`_
+.. admonition:: Related Issue
+
+   `SECoP Issue 35: Partial structs`_
 
 
 .. _command:
@@ -411,14 +444,14 @@ If an accessible is a command, its argument and result is described by the ``com
 Optional Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"argument"``:
+``"argument"``
     the datatype of the single argument, or ``null``.
 
     only one argument is allowed, though several arguments may be used if
     encapsulated in a structural datatype (struct_ or tuple_).
     If such encapsulation or data grouping is needed, a struct SHOULD be used.
 
-``"result"``:
+``"result"``
     the datatype of the single result, or ``null``.
 
     In any case, the meaning of result and argument(s) SHOULD be written down
@@ -426,7 +459,10 @@ Optional Data Properties
 
 Example
 ~~~~~~~
-``{"type": "command", "argument": {"type": "bool"}, "result": {"type": "bool"}}``
+
+.. code:: json
+
+   {"type": "command", "argument": {"type": "bool"}, "result": {"type": "bool"}}
 
 
 Transport Example

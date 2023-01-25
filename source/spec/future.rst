@@ -35,7 +35,7 @@ The herein specified protocol has foreseen some extension mechanisms in its desi
 
 * add actions, keeping the 'triple' structure of action/specifier/data
 
-  :Note:
+  .. note::
       That is why custom actions MUST be prefixed with an underscore.
 
 * extent specifier with ':' separated identifiers, getting more and more specific
@@ -52,7 +52,7 @@ The herein specified protocol has foreseen some extension mechanisms in its desi
 
 * extend reports (only append to them, never changing the already defined fields)
 
-  :Note:
+  .. note::
       The structure report may need to be nested inside a JSON-array in the future, should we need to extend that.
 
 * use so far unused datafields (there are not so many).
@@ -106,15 +106,11 @@ The corresponding reply then contains a double space. This MUST also be parsed c
 Similarly, the reports need to be handled like this:
 
 
-.. _`data-report`:
-
 .. compound::
     Data report:
 
     .. image:: images/data-report.svg
        :alt: data_report ::= "[" JSON-value "," qualifiers ("," ignored_value)* "]"
-
-.. _`error-report`:
 
 .. compound::
     Error report:
@@ -138,7 +134,7 @@ Essentially this boils down to:
 
 Complying to these rules maximize to possibility of future + backwards compatibility.
 
-:Note:
+.. note::
     also check `SECoP Issue 36: Dynamic units`_ *as it may have implications for a certain implementation.*
 
 

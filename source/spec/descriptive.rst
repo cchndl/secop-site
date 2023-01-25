@@ -84,7 +84,7 @@ Mandatory Module Properties
 ``"accessibles"``
     a JSON-object containing the accessibles and their properties, see `Accessible Description`_.
 
-    :Remark:
+    .. admonition:: Remark
 
         Be aware that some JSON libraries may not be able to keep the order of the
         items in a JSON objects. This is not required by the JSON standard, and not needed
@@ -105,7 +105,7 @@ Optional Module Properties
      string indicating a hint for UIs for which user roles the module should be display or hidden.
      MUST be one of "expert", "advanced" or "user" (default).
 
-     :Note:
+     .. note::
          this does not imply that the access is controlled. It is just a
          hint to the UI for the amount of exposed modules. A visibility of "advanced" means
          that the UI should hide the module for users, but show it for experts and
@@ -117,7 +117,9 @@ Optional Module Properties
      The lowercase version of a path component must not match the lowercase version of any module name on
      the same SEC node.
 
-     :related issue: `SECoP Issue 8: Groups and Hierarchy`_
+     .. admonition:: Related Issue
+
+        `SECoP Issue 8: Groups and Hierarchy`_
 
 ``"meaning"``
     tuple, with the following two elements:
@@ -141,7 +143,9 @@ Optional Module Properties
         (closer to the sample) relevant measuring device. A regulation device MUST have an
         :ref:`interface class <interface-classes>` of at least ``Writable``.
 
-        :related issue: `SECoP Issue 26: More Module Meanings`_
+        .. admonition:: Related Issue
+
+           `SECoP Issue 26: More Module Meanings`_
 
     2.  a value describing the importance, with the following values:
 
@@ -153,7 +157,9 @@ Optional Module Properties
         Intermediate values might be used. The range for each category starts at the indicated value minus 5
         and ends below the indicated value plus 5.
 
-        :related issue: `SECoP Issue 9: Module Meaning`_
+        .. admonition:: Related Issue
+
+           `SECoP Issue 9: Module Meaning`_
 
 .. _implementor:
 
@@ -201,7 +207,7 @@ Mandatory Parameter Properties
     This is always a JSON-Object with a single entry mapping the name of the datatype as key to
     a JSON-object containing the datatypes properties.
 
-    :Note:
+    .. note::
         commands and parameters can be distinguished by the datatype.
 
 Optional Accessible Properties
@@ -213,9 +219,11 @@ Optional Accessible Properties
     The lowercase version of a path component must not match the lowercase version of any module name or accessible on
     the same SEC node.
 
-    :related issue: `SECoP Issue 8: Groups and Hierarchy`_
+    .. admonition:: Related Issue
 
-    :Remark:
+       `SECoP Issue 8: Groups and Hierarchy`_
+
+    .. admonition:: Remark
 
         the accessible-property ``group`` is used for grouping of accessibles within a module,
         the module-property ``group`` is used for grouping of modules within a node.
@@ -224,7 +232,7 @@ Optional Accessible Properties
     a string indication a hint for a GUI about
     the visibility of the accessible. values and meaning as for module-visibility above.
 
-    :Remark:
+    .. admonition:: Remark
 
         Setting an accessibles visibility equal or higher than its modules
         visibility has the same effect as omitting the visibility.
@@ -255,7 +263,7 @@ module property. An ECS not knowing the meaning of a custom property MUST ignore
 The datatype of a custom property is not pre-defined,
 an ECS should be prepared to handle anything here.
 
-:note:
+.. note::
     An ECS which is not programmed to be aware about a specific custom property
     must ignore it.
 
