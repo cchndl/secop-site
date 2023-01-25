@@ -31,8 +31,8 @@ Welcome to SECoP!
       .. code-block::
          :class: intro-code-block
 
-         >> read secop:description
-         << reply secop:description
+         > describe
+         < describing secop {"..."}
 
    .. grid-item::
 
