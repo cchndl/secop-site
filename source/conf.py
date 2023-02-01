@@ -73,20 +73,38 @@ html_css_files = [
 ]
 
 html_theme_options = {
-    #pydata_sphinx_theme
     'logo': {
         'image_light': 'SECoP_logo.png',
         'image_dark': 'SECoP_logo.png',
     },
     'footer_items': ['copyright'],
     'secondary_sidebar_items': ['page-toc', 'sourcelink'],
-    #"announcement": "<em>Important</em> announcement!",
+    'favicons': [
+        {
+            'rel': 'icon',
+            'sizes': '16x16',
+            'href': 'favicon16.png',
+        },
+        {
+            'rel': 'icon',
+            'sizes': '32x32',
+            'href': 'favicon32.png',
+        },
+        {
+            'rel': 'apple-touch-icon',
+            'sizes': '180x180',
+            'href': 'favicon.png',
+            'color': '#000000',
+        },
+    ],
+    # 'announcement': '<em>Important</em> announcement!',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
 
 class SECoPLexer(RegexLexer):
     name = 'secop'
