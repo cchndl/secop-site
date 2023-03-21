@@ -4,68 +4,84 @@ Introduction
 
 .. toctree::
     :maxdepth: 1
+    :hidden:
 
-This is an interactive SECoP terminal.  You can try entering commands and see
-the resulting response.
+Here you will find a short overview of SECoP.
 
-.. raw:: html
+Background
+~~~~~~~~~~
 
-   <script src="https://cdn.jsdelivr.net/npm/xterm@4.9.0/lib/xterm.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.4.0/lib/xterm-addon-fit.min.js"></script>
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@4.9.0/css/xterm.min.css"></link>
+SECoP developed out of the need of multiple large scale facilities in the neutron science world to make equipment easier to share between facilities. This should not deter you from using it, as it's flexibility allows for a wide range of use cases.
 
-   <script type="text/javascript">
-   var term = null;
-   var termFitAddon = null;
-   var input = "";
-   var counter = 0;
+Basics
+~~~~~~
 
-   function openterm() {
-       $('html').addClass('is-clipped');
-       term = new Terminal({'rows': 20});
-       term.setOption('lineHeight', 1.2);
-       termFitAddon = new FitAddon.FitAddon();
-       term.loadAddon(termFitAddon);
-       term.open(document.getElementById('term'));
-       termFitAddon.fit();
-       term.focus();
-       term.write("\x1b[0;1m>\x1b[1;36m ");
-       term.onData(function(data) {
-           if (data == "\u007f") {
-               if (input.length > 0) {
-                   input = input.substr(0, input.length - 1);
-                   term.write("\x08\x1b[K");
-               }
-           } else if (data == "\r") {
-               term.write("\r\n");
-               if (input == "describe") {
-                   reply = "describing . {...}";
-               } else if (input == "activate") {
-                   window.setInterval(function() {
-                       counter += 1;
-                       term.write("\x1b[1K\x1b[G\x1b[0;1m<\x1b[0;33m change module:value [" +
-                       counter + ", {}]\r\n\x1b[0;1m> " + input);
-                   }, 1000);
-                   reply = "active";
-               } else if (input == "read module:value") {
-                   reply = "reply module:value [127, {\"t\": now}]";
-               } else {
-                   reply = "error . [\"I don't understand this yet.\"]";
-               }
-               term.write("\x1b[0;1m<\x1b[0;33m " + reply + "\r\n");
-               term.write("\x1b[0;1m>\x1b[1;36m ");
-               input = "";
-           } else {
-               input += data;
-               term.write(data);
-           }
-       });
-   }
+SECoP is a line-based protocol.
 
-   $(function() { openterm(); });
-   </script>
+First Use
+~~~~~~~~~
 
-   <div style="width: 40vw; height: 50vh; background-color: black; padding: 1em;
-   line-height: 1.3em; border-radius: 10px">
-   <div id="term" style=""></div>
-   </div>
+So you have never used SECoP, and want to interact with a node?
+For exploring the protocol, all you need is a program that can talk tcp or serial, depending on your device.
+Connect to your device and send the following message to start communication ('>' and '<' show who is sending the message):
+
+.. code::
+
+    > *IDN?
+
+The SECNode replies with the version number of the protocol that it wants to speak:
+
+.. code::
+
+    < ISSE,SECoP,V2019-09-16,v1.0
+
+Great! 
+So we know, that we are talking to something that knows SECoP, but we do not know yet, what we are talking to.
+That is, what we will find out with next message:
+
+.. code::
+
+    > describe
+
+We will format the answer a bit, since it is longer than the usual messages we will encounter:
+
+.. code::
+
+    < describing . {
+       "equipment_id":"introduction_node",
+       "description":"a basic example",
+       "modules" : {
+        "outside" : {
+         "interface_classes" : ["Readable"],
+         "implementation":"example.sensors.Temperature",
+         "accessibles" : {
+          "description": 
+          "value":{
+           "datainfo":{
+            "type":"double",
+             "unit":"C"
+           },
+           "description":"temperature outside",
+           "readonly":true
+          }
+         }
+        }
+       }
+      }
+
+We asked the SECNode to describe itself to us, and now we can interact with specific parts of the SECNode.
+The easiest command to access a module is the `read` command, where we have to say, which value we want to read:
+
+.. code::
+
+   > read outside:value
+   < [23.2, {"t": 1212121.121221}]
+
+
+
+SECNodes 
+~~~~~~~~
+
+Implementing SECNodes is best done with one of the preexisting frameworks.
+
+Depending on your background or the technologies already in use with your facility, you can choose the :doc:`implemenation<../libs>` that suits your needs best.

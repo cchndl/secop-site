@@ -58,7 +58,7 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 
 html_title = 'SECoP'
-html_logo = 'spec/images/SECoP_logo.png'
+html_logo = 'spec/images/SECoP_logo.svg'
 
 html_additional_pages = {
     # Custom template for landing page
@@ -74,8 +74,8 @@ html_css_files = [
 
 html_theme_options = {
     'logo': {
-        'image_light': 'SECoP_logo.png',
-        'image_dark': 'SECoP_logo.png',
+        'image_light': 'SECoP_logo.svg',
+        'image_dark': 'SECoP_logo.svg',
     },
     'footer_items': ['copyright'],
     'secondary_sidebar_items': ['page-toc', 'sourcelink'],
@@ -97,7 +97,12 @@ html_theme_options = {
             'color': '#000000',
         },
     ],
-    # 'announcement': '<em>Important</em> announcement!',
+    #"announcement": "<em>Important</em> announcement!",
+    'header_links_before_dropdown': 4,
+    # links with icons to the right of the search icon:
+    #'external_links': [
+    #    {}
+    #]
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

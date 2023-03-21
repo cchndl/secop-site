@@ -8,20 +8,22 @@ Welcome to SECoP!
     :maxdepth: 1
     :hidden:
 
-    news/index
-
-.. toctree::
-    :maxdepth: 1
-    :hidden:
-
     intro/index
-    spec/index
+    demo/index
+    spec1-0/index
 
 .. toctree::
     :maxdepth: 1
     :hidden:
 
     libs
+
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    contact
+    ISSE <https://sampleenvironment.org/>
 
 .. grid::
 
@@ -56,7 +58,7 @@ Welcome to SECoP!
 
    .. grid-item::
 
-      .. button-ref:: spec/index
+      .. button-ref:: spec1-0/index
          :color: info
          :shadow:
 
@@ -139,7 +141,7 @@ The :doc:`Introduction <intro/index>` section has examples of the protocol, as
 well as example code to get started with writing drivers using one of our
 implementations.
 
-See the :doc:`Specification <spec/index>` section for the full specification.
+See the :doc:`Specification <spec1-0/index>` section for the full specification.
 
 In :doc:`Implementations <libs>` you can see the known implementations, which
 cover a wide range of use cases and technologies.
