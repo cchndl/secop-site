@@ -617,16 +617,20 @@ Logging is an optional message, i.e. a sec-node is not enforced to implement it.
 
 example::
 
-  > logging  "error"           ; note: empty specifier -> select all modules
-  < logging  "error"           ; SEC-node confirms
+  # note: empty specifier -> select all modules
+  > logging  "error"
+  # SEC-node confirms
+  < logging  "error"
   < log mod1:debug "polling value"
   < log mod1:debug "sending request..."
   ...
 
 another example::
 
-  > logging mod1 "debug"       ; enable full logging of mod1
-  < logging mod1 "error"       ; SEC-node can only log errors, logging of errors of mod1 is now active
+  # enable full logging of mod1
+  > logging mod1 "debug"
+  # SEC-node can only log errors, logging of errors of mod1 is now active
+  < logging mod1 "error"
   < log mod1:error "value par1 can not be determined, please refill read-out liquid"
   ...
   > logging mod1 false

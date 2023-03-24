@@ -122,7 +122,8 @@ class SECoPLexer(RegexLexer):
              bygroups(Token.Generic.Prompt, Token.Whitespace, Token.Keyword)),
             (r'(<)( +)(ISSE.*)',
              bygroups(Token.Generic.Prompt, Token.Whitespace, Token.String)),
-            # generic request/reply with JSON reply broken into multiple lines
+            # generic request/reply with JSON reply potentially broken into
+            # multiple lines
             (r'(?s)(?:([><])( +))?(\w+)(?:( +)([\w.]+)(:\w+)?)?( +)(\{)',
              bygroups(
                  Token.Generic.Prompt,
@@ -147,6 +148,10 @@ class SECoPLexer(RegexLexer):
                  Token.Whitespace,
                  using(JsonLexer)
              )),
+            # just an ellipsis
+            (r'\.\.\.', Token.Comment),
+            # comment
+            (r'# .*$', Token.Comment),
             (r'\s+', Token.Whitespace),
         ],
         'json': [
