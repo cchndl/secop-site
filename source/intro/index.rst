@@ -55,7 +55,7 @@ We will format the answer a bit, since it is longer than the usual messages we w
          "interface_classes" : ["Readable"],
          "implementation":"example.sensors.Temperature",
          "accessibles" : {
-          "description": 
+          "description":
           "value":{
            "datainfo":{
             "type":"double",
@@ -75,11 +75,11 @@ The easiest command to access a module is the `read` command, where we have to s
 .. code::
 
    > read outside:value
-   < [23.2, {"t": 1212121.121221}]
+   < reply outside:value [23.2, {"t": 1212121.121221}]
 
 
 
-SECNodes 
+SECNodes
 ~~~~~~~~
 
 Implementing SECNodes is best done with one of the preexisting frameworks.

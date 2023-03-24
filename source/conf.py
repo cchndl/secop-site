@@ -117,7 +117,26 @@ class SECoPLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(?:([><])( +))?(\w+)(?:( +)(\w+)(:\w+)?)?(?:( +)(.*?))?$',
+            # special: *IDN? and reply
+            (r'(>)( +)(\*IDN\?)',
+             bygroups(Token.Generic.Prompt, Token.Whitespace, Token.Keyword)),
+            (r'(<)( +)(ISSE.*)',
+             bygroups(Token.Generic.Prompt, Token.Whitespace, Token.String)),
+            # generic request/reply with JSON reply broken into multiple lines
+            (r'(?s)(?:([><])( +))?(\w+)(?:( +)([\w.]+)(:\w+)?)?( +)(\{)',
+             bygroups(
+                 Token.Generic.Prompt,
+                 Token.Whitespace,
+                 Token.Keyword,
+                 Token.Whitespace,
+                 Token.String,
+                 Token.Name,
+                 Token.Whitespace,
+                 using(JsonLexer)
+             ),
+             'json'),
+            # generic single line request/reply
+            (r'(?:([><])( +))?(\w+)(?:( +)([\w.]+)(:\w+)?)?(?:( +)(.*?))?$',
              bygroups(
                  Token.Generic.Prompt,
                  Token.Whitespace,
@@ -129,8 +148,15 @@ class SECoPLexer(RegexLexer):
                  using(JsonLexer)
              )),
             (r'\s+', Token.Whitespace),
+        ],
+        'json': [
+            # multi-line JSON (XXX does not work with braces in strings)
+            (r'\{', Token.Punctuation, '#push'),
+            (r'\}', Token.Punctuation, '#pop'),
+            (r'[^{}]+', using(JsonLexer)),
         ]
     }
+
 
 lexers['secop'] = SECoPLexer(startinline=True)
 
