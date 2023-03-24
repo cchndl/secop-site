@@ -380,7 +380,7 @@ and an JSON object containing the :ref:`qualifiers` for this value as its second
 
 .. admonition:: Remark
 
-    future revisions may append additional elements.
+    Future revisions may append additional elements.
     These are to be ignored for implementations of the current specification
 
 

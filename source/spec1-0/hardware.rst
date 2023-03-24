@@ -273,7 +273,7 @@ See also: :ref:`data-report`.
 
 .. admonition:: Remark
 
-    future revisions may append additional elements.
+    Future revisions may append additional elements.
     These are to be ignored for implementations of the current specification
 
 .. _error-report:
@@ -374,7 +374,8 @@ The last one in the list must be one of the base classes listed below.
 
 .. admonition:: Remark
 
-    The list may also be empty, indicating that the module in question does not even conform to the Readable class!
+    The list may also be empty, indicating that the module in question does
+    not even conform to the Readable class!
 
 Base classes
 ~~~~~~~~~~~~

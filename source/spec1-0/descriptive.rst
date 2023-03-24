@@ -207,7 +207,7 @@ Optional Accessible Properties
 
     .. admonition:: Remark
 
-        the accessible-property ``group`` is used for grouping of accessibles within a module,
+        The accessible-property ``group`` is used for grouping of accessibles within a module,
         the module-property ``group`` is used for grouping of modules within a node.
 
 ``"visibility"``

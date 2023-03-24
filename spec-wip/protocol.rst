@@ -253,7 +253,7 @@ A client implementing the current specification MUST ignore it.
 
 .. admonition:: Remark
 
-    this reply might be a very long line, no raw line breaks are allowed in the
+    This reply might be a very long line, no raw line breaks are allowed in the
     JSON part! I.e. the JSON-part should be as compact as possible.
 
 .. note::
@@ -350,7 +350,7 @@ Example:
 
 .. admonition:: Remark
 
-    the update message in the second line was sent before the deactivate message
+    The update message in the second line was sent before the deactivate message
     was treated. After the "inactive" message, the client can expect that no more untriggered
     update message are sent, though it MUST still be able to handle (or ignore) them, if they still
     occur.
@@ -363,7 +363,7 @@ This requires the ECS being able to handle update events at any time!
 
 .. admonition:: Remark
 
-    it is not clear, if module-wise deactivation is really useful. A SEC Node
+    It is not clear, if module-wise deactivation is really useful. A SEC Node
     supporting module-wise activation does not necessarily need to support module-wise
     deactivation.
 
@@ -381,7 +381,8 @@ After all side-effects are communicated, a "changed" reply is then send, contain
 
     * If the value is not stored in hardware, the "update" message can be sent immediately.
     * The read-back value should always reflect the value actually used.
-    * an client having activated updates may get an ``update`` message before the ``changed`` message, both containing the same data report.
+    * an client having activated updates may get an ``update`` message before
+      the ``changed`` message, both containing the same data report.
 
 
 Example on a connection with activated updates. Qualifiers are replaced by {...} for brevity here.
