@@ -58,7 +58,7 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 
 html_title = 'SECoP'
-html_logo = 'spec/images/SECoP_logo.svg'
+html_logo = '_static/logo.svg'
 
 html_additional_pages = {
     # Custom template for landing page
