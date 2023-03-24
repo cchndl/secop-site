@@ -19,8 +19,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      #
-      - name: build sphinx
+      - name: install sphinx
+        run: pip install -r requirements.txt
+      - name: build with sphinx
         run: make html
       - name: Upload
         uses: actions/upload-pages-artifact@v1
