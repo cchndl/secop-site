@@ -74,8 +74,8 @@ html_css_files = [
 
 html_theme_options = {
     'logo': {
-        'image_light': 'SECoP_logo.svg',
-        'image_dark': 'SECoP_logo.svg',
+        'image_light': 'logo.svg',
+        'image_dark': 'logo.svg',
     },
     'footer_items': ['copyright'],
     'secondary_sidebar_items': ['page-toc', 'sourcelink'],

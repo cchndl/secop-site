@@ -9,7 +9,6 @@ Welcome to SECoP!
     :hidden:
 
     intro/index
-    demo/index
     spec1-0/index
 
 .. toctree::
