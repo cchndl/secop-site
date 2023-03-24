@@ -25,8 +25,8 @@ i.e. message starts with an action keyword, followed optionally by one space and
 (not containing spaces), followed optionally by one space and a JSON-value (see :RFC:`8259`) called data,
 which absorbs the remaining characters up to the final LF.
 
-:Note:
-    numerical values and strings appear 'naturally' formatted in JSON-value, i.e. 5.0 or "a string".
+.. note::
+    Numerical values and strings appear 'naturally' formatted in JSON-value, i.e. 5.0 or "a string".
 
 The specifier consists of a module identifier, and for most actions, followed by a colon as separator
 and an accessible identifier. In special cases (e.g. ``describe``, ``ping``), the specifier is just a token or may be empty:
@@ -45,8 +45,8 @@ Identifiers starting with underscore ('custom-names') are
 reserved for special purposes like internal use for debugging. The
 identifier length is limited (<=63 characters).
 
-:Note:
-    Albeit names MUST be compared/stored case sensitive, names in each scope need to be unique when lowercased.
+.. note::
+    Although names MUST be compared/stored case sensitive, names in each scope need to be unique when lowercased.
     The scopes are:
 
     - module names on a SEC Node (including the group entries of those modules)
@@ -80,24 +80,24 @@ Async mode:
 In both cases, a request from the ECS to the SEC node is to be followed by an reply from the SEC node to the ECS,
 either indicating success of the request or flag an error.
 
-:Note:
-    an ECS may try to send a request before it received the reply to an earlier request.
+.. note::
+    An ECS may try to send a request before it received the reply to an earlier request.
     This has two implications: a SEC-node may serialize requests and fulfill them strictly in order.
     In that case the ECS should not overflow the input buffer of the SEC-node.
     The second implication is that an ECS which sends multiple requests, before the replies arrive,
     MUST be able to handle the replies arriving out-of-order. Unfortunately there is currently no indication
     if a SEC-node is operating strictly in order or if it can work on multiple requests simultaneously.
 
-:Note:
-    to improve compatibility, any ECS client SHOULD be aware of `update`_ messages at any time.
+.. note::
+    To improve compatibility, any ECS client SHOULD be aware of `update`_ messages at any time.
 
-:Note:
-    to clarify optionality of some messages, the following table is split into two:
+.. note::
+    To clarify optionality of some messages, the following table is split into two:
     basic messages (which MUST be implemented like specified) and
     extended messages which SHOULD be implemented.
 
-:Note:
-    for clarification, the symbol "``␣``" is used here instead of a space character.
+.. note::
+    For clarification, the symbol "``␣``" is used here instead of a space character.
     <elem> refers to the element elem which is defined in another section.
 
 
@@ -126,7 +126,7 @@ either indicating success of the request or flag an error.
      `error reply`_          reply          ``error_<action>␣<specifier>␣``\ <:ref:`error-report`>
     ======================= ============== ==================
 
-:note:
+.. note::
     This means that ``change`` needs to be implemented, even if only readonly accessibles are present.
     In this case, a ``change`` message will naturally be replied with an ``error_change``
     message with an :ref:`Error class <error-classes>` of "ReadOnly" and not with an "ProtocolError".
@@ -180,10 +180,10 @@ Correct handling of side-effects:
 
   4) SEC-node sends the reply to the request of point 2) indicating the success of the request.
 
-     :Note:
+     .. note::
          This may also be an error. In that case point 3) was likely not fully performed.
 
-     :Note:
+     .. note::
         An error may be replied after the status was sent to BUSY:
         if triggering the intended action failed (Communication problems?).
 
@@ -192,14 +192,14 @@ Correct handling of side-effects:
      should reflect the now no longer BUSY state. Of course, all other parameters influenced by this should also
      communicate their new values.
 
-:Note:
+.. note::
      An ECS establishing more than one connection to the same sec-node and
      which **may** process the ``update`` event message from point 3)
      after the reply of point 4) MUST query the status parameter synchronously
      to avoid the race-condition of missing the (possible) BUSY status-code.
 
-:Note:
-     temporal order should be kept wherever possible!
+.. note::
+     Temporal order should be kept wherever possible!
 
 
 
@@ -249,12 +249,12 @@ Example:
 The dot (second item in the reply message) is a placeholder for extensibility reasons.
 A client implementing the current specification MUST ignore it.
 
-:Remark:
+.. admonition:: Remark
 
     this reply might be a very long line, no raw line breaks are allowed in the
     JSON part! I.e. the JSON-part should be as compact as possible.
 
-:Note:
+.. note::
     The use of a single dot for the specifier is a little contrary to the other messages addressing the
     SEC-node. It may be changed in a later revision. ECS-clients are advised to ignore the specifier part
     of the describing message. A SEC-node SHOULD use a dot for the specifier.
@@ -266,13 +266,13 @@ The parameterless "activate" request triggers the SEC node to send the
 values of all its modules and parameters as update messages (initial updates). When this
 is finished, the SEC node must send an "active" reply. (*global activation*)
 
-:Note:
-    the values transferred are not necessarily read fresh from the hardware, check the timestamps!
+.. note::
+    The values transferred are not necessarily read fresh from the hardware, check the timestamps!
 
-:Note:
+.. note::
     This initial update is to help the ECS establish a copy of the 'assumed-to-be-current' values.
 
-:Note:
+.. note::
     An ECS MUST be able to handle the case of an extra update occurring during the initial phase, i.e.
     it must handle the case of receiving more than one update for any valid specifier.
 
@@ -311,12 +311,12 @@ t1:value and t1:status, followed by the ``active`` reply.
 Also, an ``error_update`` for a parameter ``_heaterpower`` is shown.
 After this two more updates on the ``t1:value`` show up after roughly 1s between each.
 
-:Note:
-    it is vital that all initial updates are sent, **before** the 'active' reply is sent!
+.. note::
+    It is vital that all initial updates are sent, **before** the 'active' reply is sent!
     (an ECS may rely on having gotten all values)
 
-:Note:
-    to speed up the activation process, polling + caching of all parameters on the SEC-node is advised,
+.. note::
+    To speed up the activation process, polling + caching of all parameters on the SEC-node is advised,
     i.e. the parameters should not just be read from hardware for activation, as this may take a long time.
 
 
@@ -346,7 +346,7 @@ Example:
   < update t1:value [295.13,{"t":1505396348.188388}]
   < inactive
 
-:Remark:
+.. admonition:: Remark
 
     the update message in the second line was sent before the deactivate message
     was treated. After the "inactive" message, the client can expect that no more untriggered
@@ -359,7 +359,7 @@ supported, the SEC-node should ignore a deactivate message which contains a modu
 and send an ``error_deactivate`` reply.
 This requires the ECS being able to handle update events at any time!
 
-:Remark:
+.. admonition:: Remark
 
     it is not clear, if module-wise deactivation is really useful. A SEC Node
     supporting module-wise activation does not necessarily need to support module-wise
@@ -375,7 +375,7 @@ having activated the parameter/module in question, get an "update" message.
 After all side-effects are communicated, a "changed" reply is then send, containing a
 :ref:`data-report` of the read-back value.
 
-:Remarks:
+.. admonition:: Remarks
 
     * If the value is not stored in hardware, the "update" message can be sent immediately.
     * The read-back value should always reflect the value actually used.
@@ -399,8 +399,8 @@ The ECS will be informed with a further update message on mf:status,
 when the module has finished ramping.
 Until then, it will get regular updates on the current main value (see last update above).
 
-:Note:
-    it is vital that all 'side-effects' are realized (i.e. stored in internal variables) and be communicated, **before** the 'changed' reply is sent!
+.. note::
+    It is vital that all 'side-effects' are realized (i.e. stored in internal variables) and be communicated, **before** the 'changed' reply is sent!
 
 
 Read Request
@@ -572,7 +572,7 @@ _`Error Classes`:
         * - InternalError
           - Something that should never happen just happened.
 
-    :Remark:
+    .. admonition:: Remark
 
         This list may be extended, if needed. clients should treat unknown error classes as generic as possible.
 
@@ -590,13 +590,13 @@ Logging is an optional message, i.e. a sec-node is not enforced to implement it.
 
   This scheme may also be extended to configure logging only for selected parameters of selected modules.
 
-  :"off":
+  "off"
     Remote logging is completely turned off.
-  :"error":
+  "error"
     Only errors are logged remotely.
-  :"info":
+  "info"
     Only 'info' and 'error' messages are logged remotely.
-  :"debug":
+  "debug"
     All log messages are logged remotely.
 
   A SEC-node should reply with an :ref:`error-report` (``ProtocolError``) if it doesn't implement this message.
@@ -607,7 +607,8 @@ Logging is an optional message, i.e. a sec-node is not enforced to implement it.
   least specific item where logging is supported. e.g. if logging for <module>:<param> is requested, but the SEC-node
   only support logging of the module, this should be reflected in the reply and the logging of the module is to be influenced.
 
-  :Note: it is not foreseen to query the currently active logging level. It is supposed to default to ``"off"``.
+  .. note::
+     It is not foreseen to query the currently active logging level. It is supposed to default to ``"off"``.
 
 ``log``
   followed by a specifier of <modulename>:<loglevel> and the message to be logged as JSON-string in the datapart.
@@ -647,7 +648,7 @@ The :ref:`qualifiers` part SHOULD only contain the timestamp (as member "t") if 
 SEC node supports timestamping.
 This can be used to synchronize the time between ECS and SEC node.
 
-:Remark:
+.. admonition:: Remark
 
     The qualifiers could also be an empty JSON-object, indicating lack of timestamping support.
 
@@ -663,7 +664,10 @@ Example:
   > ping 123
   < pong 123 [null, {"t": 1505396348.543}]
 
-:Related SECoP Issues: `SECoP Issue 3: Timestamp Format`_ and `SECoP Issue 7: Time Synchronization`_
+.. admonition:: Related Issues
+
+   | `SECoP Issue 3: Timestamp Format`_
+   | `SECoP Issue 7: Time Synchronization`_
 
 
 Handling timeout Issues
@@ -681,7 +685,10 @@ If the response of the description does not match, it is up to the ECS how to ha
 Naturally, if the previous connection was activated, an ``activate``
 message has to be sent before it can continue as before.
 
-:Related SECoP Issues: `SECoP Issue 4: The Timeout SEC Node Property`_ and `SECoP Issue 6: Keep Alive`_
+.. admonition:: Related Issues
+
+   | `SECoP Issue 4: The Timeout SEC Node Property`_
+   | `SECoP Issue 6: Keep Alive`_
 
 
 Multiple Connections

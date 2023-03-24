@@ -283,7 +283,7 @@ Optional Data Properties
     the maximum length of the string in UTF-8 code points, counting the number of characters (**not** bytes!)
 
     .. note::
-        an UTF-8 encoded character may occupy up to 4 bytes.
+        An UTF-8 encoded character may occupy up to 4 bytes.
         Also the end-of-string marker may need another byte for storage.
 
 ``"minchars"``

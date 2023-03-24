@@ -45,7 +45,7 @@ Floating Point Numbers: ``double``
 
 Datatype to be used for all physical quantities.
 
-:Note:
+.. note::
     The ECS SHOULD use internally IEEE-754 double floating point values and MUST support AT LEAST
     the full IEEE-754 single float value range and precision. However, NaN, infinite and
     denormalized numbers do not need to be supported, as JSON can't transport those 'values'.

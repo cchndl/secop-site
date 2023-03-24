@@ -9,8 +9,8 @@ Format of Descriptive Data
 
 The format of the descriptive data is JSON, as all other data in SECoP.
 
-:note:
-    all names on each hierarchy level needs to unique (i.e. not repeated) when lowercased.
+.. note::
+    All names on each hierarchy level needs to unique (i.e. not repeated) when lowercased.
 
 SEC Node Description
 --------------------
@@ -32,7 +32,7 @@ Mandatory SEC Node Properties
     contains a JSON-object with names of modules as key and JSON-objects as
     values, see `Module Description`_.
 
-    :Remark:
+    .. admonition:: Remark
 
         Be aware that some JSON libraries may not be able to keep the order of the
         items in a JSON objects. This is not required by the JSON standard, and not needed
@@ -84,7 +84,7 @@ Mandatory Module Properties
 ``"accessibles"``
     a JSON-object containing the accessibles and their properties, see `Accessible Description`_.
 
-    :Remark:
+    .. admonition:: Remark
 
         Be aware that some JSON libraries may not be able to keep the order of the
         items in a JSON objects. This is not required by the JSON standard, and not needed
@@ -105,8 +105,8 @@ Optional Module Properties
      string indicating a hint for UIs for which user roles the module should be display or hidden.
      MUST be one of "expert", "advanced" or "user" (default).
 
-     :Note:
-         this does not imply that the access is controlled. It is just a
+     .. note::
+         This does not imply that the access is controlled. It is just a
          hint to the UI for the amount of exposed modules. A visibility of "advanced" means
          that the UI should hide the module for users, but show it for experts and
          advanced users.
@@ -191,8 +191,8 @@ Mandatory Parameter Properties
     This is always a JSON-Object with a single entry mapping the name of the datatype as key to
     a JSON-object containing the datatypes properties.
 
-    :Note:
-        commands and parameters can be distinguished by the datatype.
+    .. note::
+        Commands and parameters can be distinguished by the datatype.
 
 Optional Accessible Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,7 +205,7 @@ Optional Accessible Properties
 
     :related issue: `SECoP Issue 8: Groups and Hierarchy`_
 
-    :Remark:
+    .. admonition:: Remark
 
         the accessible-property ``group`` is used for grouping of accessibles within a module,
         the module-property ``group`` is used for grouping of modules within a node.
@@ -214,7 +214,7 @@ Optional Accessible Properties
     a string indication a hint for a GUI about
     the visibility of the accessible. values and meaning as for module-visibility above.
 
-    :Remark:
+    .. admonition:: Remark
 
         Setting an accessibles visibility equal or higher than its modules
         visibility has the same effect as omitting the visibility.
@@ -245,7 +245,7 @@ module property. An ECS not knowing the meaning of a custom property MUST ignore
 The datatype of a custom property is not pre-defined,
 an ECS should be prepared to handle anything here.
 
-:note:
+.. note::
     An ECS which is not programmed to be aware about a specific custom property
     must ignore it.
 

@@ -667,7 +667,10 @@ Example:
   > ping 123
   < pong 123 [null, {"t": 1505396348.543}]
 
-:Related SECoP Issues: `SECoP Issue 3: Timestamp Format`_ and `SECoP Issue 7: Time Synchronization`_
+.. admonition:: Related Issues
+
+   | `SECoP Issue 3: Timestamp Format`_
+   | `SECoP Issue 7: Time Synchronization`_
 
 
 Handling timeout Issues
@@ -685,7 +688,10 @@ If the response of the description does not match, it is up to the ECS how to ha
 Naturally, if the previous connection was activated, an ``activate``
 message has to be sent before it can continue as before.
 
-:Related SECoP Issues: `SECoP Issue 4: The Timeout SEC Node Property`_ and `SECoP Issue 6: Keep Alive`_
+.. admonition:: Related Issues
+
+   | `SECoP Issue 4: The Timeout SEC Node Property`_
+   | `SECoP Issue 6: Keep Alive`_
 
 
 Multiple Connections

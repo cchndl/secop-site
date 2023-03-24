@@ -106,7 +106,7 @@ Optional Module Properties
      MUST be one of "expert", "advanced" or "user" (default).
 
      .. note::
-         this does not imply that the access is controlled. It is just a
+         This does not imply that the access is controlled. It is just a
          hint to the UI for the amount of exposed modules. A visibility of "advanced" means
          that the UI should hide the module for users, but show it for experts and
          advanced users.
@@ -208,7 +208,7 @@ Mandatory Parameter Properties
     a JSON-object containing the datatypes properties.
 
     .. note::
-        commands and parameters can be distinguished by the datatype.
+        Commands and parameters can be distinguished by the datatype.
 
 Optional Accessible Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

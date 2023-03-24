@@ -137,15 +137,16 @@ The following parameters are predefined (this list will be extended):
     Any undefined status code has to be treated like a generic subcode of the given code number,
     i.e. 376 should be treated as a BUSY_Ramping until it is defined otherwise in the specification.
 
-    :related issues:
-        `SECoP Issue 37: Clarification of status`_,
-        `SECoP Issue 59: set_mode and mode instead of some commands`_
+    .. admonition:: Related Issues
 
-    :Note:
-        the behavior of a module in each of the predefined states is not yet 100% defined.
+        | `SECoP Issue 37: Clarification of status`_
+        | `SECoP Issue 59: set_mode and mode instead of some commands`_
 
-    :Note:
-        a module only need to declare the status values which it implements. i.e. an Readable module
+    .. note::
+        The behavior of a module in each of the predefined states is not yet 100% defined.
+
+    .. note::
+        A module only need to declare the status values which it implements. i.e. an Readable module
         does not need a BUSY status.
 
 ``"target"``
@@ -245,7 +246,7 @@ The following commands are predefined (extensible):
      When this command is sent, and the status is DISABLED,
      it is safe to switch off the related device.
 
-:Note:
+.. note::
     Going to the DISABLED state, may also be triggered by changing the mode to DISABLED.
     If the implementor for security reason wants to prohibit any action after a shutdown,
     this should only be achieved by a shutdown command, as disabling the module should be
@@ -270,7 +271,7 @@ and an JSON object containing the qualifiers_ for this value as its second eleme
 
 See also: :ref:`data-report`.
 
-:Remark:
+.. admonition:: Remark
 
     future revisions may append additional elements.
     These are to be ignored for implementations of the current specification
@@ -304,7 +305,7 @@ Value
 -----
 Values are transferred as a JSON-Value.
 
-:Programming Hint:
+.. admonition:: Programming Hint
 
     Some JSON libraries do not allow all JSON values in their (de-)serialization functions.
     Whether or not a JSON value is a valid JSON text, is controversial,
@@ -339,7 +340,7 @@ Currently 2 qualifiers are defined:
     represented as a number, in general a floating point when the resolution
     is better than 1 second.
 
-    :Note:
+    .. note::
         To check if a SEC node supports time stamping, a `ping` request can be sent.
         (See also :ref:`heartbeat`).
 
@@ -371,7 +372,7 @@ first) and is stored in the module-property `interface_classes`.
 The ECS chooses the first class from the list which is known to it.
 The last one in the list must be one of the base classes listed below.
 
-:Remark:
+.. admonition:: Remark
 
     The list may also be empty, indicating that the module in question does not even conform to the Readable class!
 
