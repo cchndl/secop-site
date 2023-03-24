@@ -28,7 +28,7 @@ SEC Node Description
 Mandatory SEC Node Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"modules"``:
+``"modules"``
     contains a JSON-object with names of modules as key and JSON-objects as
     values, see `Module Description`_.
 
@@ -39,13 +39,13 @@ Mandatory SEC Node Properties
         for the functionality of SECoP. However, it might be an advantage
         to use a JSON library which keeps the order of JSON object items.
 
-``"equipment_id"``:
+``"equipment_id"``
      worldwide unique id of an equipment as string. Should contain the name of the
      owner institute or provider company as prefix in order to guarantee worldwide uniqueness.
 
      example: ``"MLZ_ccr12"`` or ``"HZB-vm4"``
 
-``"description"``:
+``"description"``
      text describing the node, in general.
      The formatting should follow the 'git' standard, i.e. a short headline (max 72 chars),
      followed by ``\n\n`` and then a more detailed description, using ``\n`` for linebreaks.
@@ -53,19 +53,19 @@ Mandatory SEC Node Properties
 Optional SEC Node Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"firmware"``:
+``"firmware"``
      short string naming the version of the SEC node software.
 
      example: ``"frappy-0.6.0"``
 
-``"implementor"``:
+``"implementor"``
      Is an optional string.
      The implementor of a SEC-node, defining the meaning of custom modules, status values, custom
      properties and custom accessibles. The implementor **must** be globally unique, for example
      'sinq.psi.ch'. This may be achieved by including a domain name, but it does not need
      to be a registered name, and other means of assuring a global unique name are also possible.
 
-``"timeout"``:
+``"timeout"``
      value in seconds, a SEC node should be able to respond within
      a time well below this value. (i.e. this is a reply-timeout.)
      Default: 10 sec, *see* `SECoP Issue 4: The Timeout SEC Node Property`_
@@ -81,7 +81,7 @@ Module Description
 Mandatory Module Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"accessibles"``:
+``"accessibles"``
     a JSON-object containing the accessibles and their properties, see `Accessible Description`_.
 
     :Remark:
@@ -91,17 +91,17 @@ Mandatory Module Properties
         the functionality of SECoP. However it might be an advantage
         to use a JSON library which keeps the order of JSON object items.
 
-``"description"``:
+``"description"``
     text describing the module, formatted like the node-property description
 
-``"interface_classes"``:
+``"interface_classes"``
     list of matching classes for the module, for example ``["Magnet", "Drivable"]``
 
 
 Optional Module Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"visibility"``:
+``"visibility"``
      string indicating a hint for UIs for which user roles the module should be display or hidden.
      MUST be one of "expert", "advanced" or "user" (default).
 
@@ -111,7 +111,7 @@ Optional Module Properties
          that the UI should hide the module for users, but show it for experts and
          advanced users.
 
-``"group"``:
+``"group"``
      identifier, may contain ":" which may be interpreted as path separator between path components.
      The ECS may group the modules according to this property.
      The lowercase version of a path component must not match the lowercase version of any module name on
@@ -119,7 +119,7 @@ Optional Module Properties
 
      :related issue: `SECoP Issue 8: Groups and Hierarchy`_
 
-``"meaning"``:
+``"meaning"``
     tuple, with the following two elements:
 
     1.  a string from an extensible list of predefined meanings:
@@ -157,7 +157,7 @@ Optional Module Properties
 
 .. _implementor:
 
-``"implementor"``:
+``"implementor"``
      Is an optional string.
      The implementor of a module, defining the meaning of custom status values, custom
      properties and custom accessibles. The implementor must be globally unique, for example
@@ -175,18 +175,18 @@ Accessible Description
 Mandatory Accessible Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"description"``:
+``"description"``
     string describing the accessible, formatted as for module-description
     or node-description
 
 Mandatory Parameter Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"readonly"``:
+``"readonly"``
     mandatory boolean value.
     Indicates whether this parameter may be changed by an ECS, or not.
 
-``"datainfo"``:
+``"datainfo"``
     mandatory datatype of the accessible, see :ref:`data-types`.
     This is always a JSON-Object with a single entry mapping the name of the datatype as key to
     a JSON-object containing the datatypes properties.
@@ -210,7 +210,7 @@ Optional Accessible Properties
         the accessible-property ``group`` is used for grouping of accessibles within a module,
         the module-property ``group`` is used for grouping of modules within a node.
 
-``"visibility"``:
+``"visibility"``
     a string indication a hint for a GUI about
     the visibility of the accessible. values and meaning as for module-visibility above.
 
@@ -226,7 +226,7 @@ Optional Accessible Properties
 Optional Parameter Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"constant"``:
+``"constant"``
     Optional, contains the constant value of a constant parameter.
     If given, the parameter is constant and has the given value.
     Such a parameter can neither be read nor written, and it will **not** be transferred

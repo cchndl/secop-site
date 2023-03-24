@@ -191,18 +191,18 @@ Accessible Description
 Mandatory Accessible Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"description"``:
+``"description"``
     string describing the accessible, formatted as for module-description
     or node-description
 
 Mandatory Parameter Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"readonly"``:
+``"readonly"``
     mandatory boolean value.
     Indicates whether this parameter may be changed by an ECS, or not.
 
-``"datainfo"``:
+``"datainfo"``
     mandatory datatype of the accessible, see :ref:`data-types`.
     This is always a JSON-Object with a single entry mapping the name of the datatype as key to
     a JSON-object containing the datatypes properties.
@@ -228,7 +228,7 @@ Optional Accessible Properties
         the accessible-property ``group`` is used for grouping of accessibles within a module,
         the module-property ``group`` is used for grouping of modules within a node.
 
-``"visibility"``:
+``"visibility"``
     a string indication a hint for a GUI about
     the visibility of the accessible. values and meaning as for module-visibility above.
 
@@ -244,7 +244,7 @@ Optional Accessible Properties
 Optional Parameter Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``"constant"``:
+``"constant"``
     Optional, contains the constant value of a constant parameter.
     If given, the parameter is constant and has the given value.
     Such a parameter can neither be read nor written, and it will **not** be transferred

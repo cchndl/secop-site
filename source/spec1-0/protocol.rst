@@ -129,7 +129,7 @@ either indicating success of the request or flag an error.
 :note:
     This means that ``change`` needs to be implemented, even if only readonly accessibles are present.
     In this case, a ``change`` message will naturally be replied with an ``error_change``
-    message with an :ref:`error-classes` of "ReadOnly" and not with an "ProtocolError".
+    message with an :ref:`Error class <error-classes>` of "ReadOnly" and not with an "ProtocolError".
 
 .. table:: extended messages (implementation is optional)
 
@@ -584,7 +584,7 @@ Logging
 
 Logging is an optional message, i.e. a sec-node is not enforced to implement it.
 
-``logging``:
+``logging``
   followed by a specifier of <modulename> and a string in the JSON-part which is either "debug", "info", "error" or is the JSON-value false.
   This is supposed to set the 'logging level' of the given module (or the whole SEC-node if the specifier is empty) to the given level:
 
@@ -609,7 +609,7 @@ Logging is an optional message, i.e. a sec-node is not enforced to implement it.
 
   :Note: it is not foreseen to query the currently active logging level. It is supposed to default to ``"off"``.
 
-``log``:
+``log``
   followed by a specifier of <modulename>:<loglevel> and the message to be logged as JSON-string in the datapart.
   This is an asynchronous event only to be sent by the SEC-node to the ECS which activated logging.
 

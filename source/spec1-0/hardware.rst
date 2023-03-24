@@ -48,12 +48,12 @@ Parameter:
 
 The following parameters are predefined (this list will be extended):
 
-``"value"``:
+``"value"``
     represents the *main* value of a module.
 
 .. _BUSY:
 
-``"status"``:
+``"status"``
     (a tuple of two elements: a status with predefined values
     from an :ref:`enum` as "idle","busy","error", and a describing text).
 
@@ -148,22 +148,22 @@ The following parameters are predefined (this list will be extended):
         a module only need to declare the status values which it implements. i.e. an Readable module
         does not need a BUSY status.
 
-``"target"``:
+``"target"``
     present, if the modules main value is to be changeable remotely, i.e. it is at least a Writable
 
-``"pollinterval"``:
+``"pollinterval"``
     a hint to the module for the polling interval in seconds, type is always an double.
 
-``"ramp"``:
+``"ramp"``
     (writable parameter, desired ramp. Units: main units/min)
 
-``"setpoint"``:
+``"setpoint"``
     (ramping setpoint, read only)
 
-``"time_to_target"``:
+``"time_to_target"``
     (read only double, expected time to reach target in seconds)
 
-``"mode"``:
+``"mode"``
     A parameter of datatype enum, for selecting the operation mode of a module.
     The available operation modes can not be predefined in the specification, since
     they depend on the specific module.
@@ -200,7 +200,7 @@ ECS can use them only in a general way, as their meaning is not known.
 
 The following commands are predefined (extensible):
 
-``"stop"``:
+``"stop"``
      mandatory command on a drivable.
      When a modules target is changed (or, if present, when the ``go`` command is sent),
      it is 'driving' to a new value until the target is reached or until its stop command
@@ -209,7 +209,7 @@ The following commands are predefined (extensible):
      to a value close to the present one. Then it SHOULD act as if this value would have
      been the initial target.
 
-``"communicate"``:
+``"communicate"``
      Used for direct communication with hardware, with proprietary commands. It is useful
      for debugging purposes, or if the implementor wants to give access to parameters not
      supported by the driver. The datatype might be string, or any other datatype suitable
@@ -219,13 +219,13 @@ The following commands are predefined (extensible):
 ``"reset"``
      optional command for putting the module to a state predefined by the implementation.
 
-``"clear_error"``:
+``"clear_error"``
      This command tries to clear an error state. It may be called when status is ERROR,
      and the command will try to transform status to IDLE or WARN. If it can not
      do it, the status should not change or change to an other ERROR state before
      returning ``done <module>:clear_errors``
 
-``"go"``:
+``"go"``
      optional command for starting an action. If the ``go`` command is present,
      changing any parameter (especially the 'target' parameter) does not yet initiate any
      action leading to a BUSY state.
@@ -234,7 +234,7 @@ The following commands are predefined (extensible):
      state. Changing any parameter, which has an impact on measured values, should
      be executed immediately.
 
-``"hold"``:
+``"hold"``
      optional command on a drivable. Stay more or less where you are, cease
      movement, be ready to continue soon, target value is kept. Continuation can be
      trigger with ``go``, or if not present, by putting the target parameter to its
@@ -281,7 +281,8 @@ Error report
 ------------
 An error report is used in a :ref:`error-reply` indicating that the requested action could
 not be performed as request or that other problems occurred.
-The error report is a JSON-array containing the name of one of the :ref:`error-classes`, a human readable string
+The error report is a JSON-array containing the name of one of the :ref:`Error
+classes <error-classes>`, a human readable string
 and as a third element a JSON-object containing extra error information,
 which may include the timestamp (as key "t") and possible additional
 implementation specific information about the error (stack dump etc.).
@@ -330,7 +331,7 @@ They are collected as named values in a JSON-object.
 
 Currently 2 qualifiers are defined:
 
-``"t"``:
+``"t"``
     The timestamp when the parameter has changed or was verified/measured (when no timestamp
     is given, the ECS may use the arrival time of the update message as the timestamp).
     It SHOULD be given, if the SEC node has a synchronized time,
@@ -342,7 +343,7 @@ Currently 2 qualifiers are defined:
         To check if a SEC node supports time stamping, a `ping` request can be sent.
         (See also :ref:`heartbeat`).
 
-``"e"``:
+``"e"``
    the uncertainty of the quantity. MUST be in the same units
    as the value. So far the interpretation of "e" is not fixed.
    (sigma vs. RMS difference vs. ....)
@@ -377,7 +378,7 @@ The last one in the list must be one of the base classes listed below.
 Base classes
 ~~~~~~~~~~~~
 
-``"Communicator"``:
+``"Communicator"``
     The main purpose of the module is communication.
     It may have none of the predefined parameters of the other classes.
 
@@ -386,19 +387,19 @@ Base classes
 
 .. _Readable:
 
-``"Readable"``:
+``"Readable"``
     The main purpose is to represent readable values (i.e. from a Sensor).
     It has at least a ``value`` and a ``status`` parameter.
 
 .. _Writable:
 
-``"Writable"``:
+``"Writable"``
     The main purpose is to represent fast settable values (i.e. a switch).
     It must have a ``target`` parameter in addition to what a `Readable`_ has.
 
 .. _Drivable:
 
-``"Drivable"``:
+``"Drivable"``
     The main purpose is to represent slow settable values (i.e. a temperature or a motorized needle valve).
     It must have a ``stop`` command in addition to what a `Writable`_ has.
     Also, the ``status`` parameter will indicate a `BUSY`_ state for a longer-lasting operations.
