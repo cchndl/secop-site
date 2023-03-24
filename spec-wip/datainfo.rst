@@ -117,7 +117,9 @@ Optional Data Properties
 Example
 ~~~~~~~
 
-``{"type": "double", "min": 0, "max": 100, "fmtstr": "%.3f"}``
+.. code:: json
+
+   {"type": "double", "min": 0, "max": 100, "fmtstr": "%.3f"}
 
 Transport
 ~~~~~~~~~
@@ -181,8 +183,11 @@ Optional Data Properties
 
 Example
 ~~~~~~~
-``{"type": "scaled", "scale": 0.1, "min": 0, "max": 2500}``
-i.e. a value between 0.0 and 250.0
+.. code:: json
+
+   {"type": "scaled", "scale": 0.1, "min": 0, "max": 2500}
+
+i.e. a value between 0.0 and 250.0.
 
 Transport
 ~~~~~~~~~
@@ -219,7 +224,9 @@ Optional Data Properties
 
 Example
 ~~~~~~~
-``{"type": "int", "min": 0, "max": 100}``
+.. code:: json
+
+   {"type": "int", "min": 0, "max": 100}
 
 Transport
 ~~~~~~~~~
@@ -389,7 +396,9 @@ Transport
 ~~~~~~~~~
 as JSON-array
 
-``[300,"accelerating"]``
+.. code:: json
+
+   [300,"accelerating"]
 
 
 .. _Struct:

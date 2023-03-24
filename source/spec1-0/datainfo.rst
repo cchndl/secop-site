@@ -103,7 +103,9 @@ Optional Data Properties
 Example
 ~~~~~~~
 
-``{"type": "double", "min": 0, "max": 100, "fmtstr": "%.3f"}``
+.. code:: json
+
+   {"type": "double", "min": 0, "max": 100, "fmtstr": "%.3f"}
 
 Transport
 ~~~~~~~~~
@@ -164,8 +166,12 @@ Optional Data Properties
 
 Example
 ~~~~~~~
-``{"type": "scaled", "scale": 0.1, "min": 0, "max": 2500}``
-i.e. a value between 0.0 and 250.0
+
+.. code:: json
+
+   {"type": "scaled", "scale": 0.1, "min": 0, "max": 2500}
+
+i.e. a value between 0.0 and 250.0.
 
 Transport
 ~~~~~~~~~
@@ -201,7 +207,10 @@ Optional Data Properties
 
 Example
 ~~~~~~~
-``{"type": "int", "min": 0, "max": 100}``
+
+.. code:: json
+
+   {"type": "int", "min": 0, "max": 100}
 
 Transport
 ~~~~~~~~~
@@ -217,7 +226,10 @@ Boolean: ``bool``
 
 Syntax
 ~~~~~~
-``{"type": "bool"}``
+
+.. code:: json
+
+   {"type": "bool"}
 
 Transport
 ~~~~~~~~~
@@ -238,7 +250,9 @@ Mandatory Data Property
 
 Example
 ~~~~~~~
-``{"type": "enum", "members": {"IDLE": 100, "WARN": 200, "BUSY": 300, "ERROR": 400}}``
+.. code:: json
+
+   {"type": "enum", "members": {"IDLE": 100, "WARN": 200, "BUSY": 300, "ERROR": 400}}
 
 Transport
 ~~~~~~~~~
@@ -272,7 +286,9 @@ Optional data properties
 
 Example
 ~~~~~~~
-``{"type": "string", "maxchars": 80}``
+.. code:: json
+
+   {"type": "string", "maxchars": 80}
 
 Transport
 ~~~~~~~~~
@@ -297,7 +313,9 @@ Optional Data Property
 
 Example
 ~~~~~~~
-``{"type": "blob", "min": 1, "max": 64}``
+.. code:: json
+
+   {"type": "blob", "min": 1, "max": 64}
 
 Transport
 ~~~~~~~~~
@@ -327,7 +345,9 @@ Optional Data Property
 
 Example
 ~~~~~~~
-``{"type": "array", "min": 3, "max": 10, "members": {"type": "int", "min": 0, "max": 9}}``
+.. code:: json
+
+   {"type": "array", "min": 3, "max": 10, "members": {"type": "int", "min": 0, "max": 9}}
 
 Transport
 ~~~~~~~~~
@@ -347,13 +367,17 @@ Mandatory data property
 
 Example
 ~~~~~~~
-``{"type": "tuple", "members": [{"type": "int", "min": 0, "max": 999}, {"type": "string", "maxchars": 80}]}``
+.. code:: json
+
+   {"type": "tuple", "members": [{"type": "int", "min": 0, "max": 999}, {"type": "string", "maxchars": 80}]}
 
 Transport
 ~~~~~~~~~
 as JSON-array
 
-``[300,"accelerating"]``
+.. code:: json
+
+   [300,"accelerating"]
 
 
 .. _Struct:
@@ -381,7 +405,10 @@ Optional data property
 
 Example
 ~~~~~~~
-``{"type": "struct", "members": {"y": {"type": "double"}, "x": {"type": "enum", "members": {"On": 1, "Off": 0}}}}``
+.. code:: json
+
+   {"type": "struct", "members": {"y": {"type": "double"},
+                                  "x": {"type": "enum", "members": {"On": 1, "Off": 0}}}}
 
 Transport
 ~~~~~~~~~
@@ -417,7 +444,9 @@ Optional Data Properties
 
 Example
 ~~~~~~~
-``{"type": "command", "argument": {"type": "bool"}, "result": {"type": "bool"}}``
+.. code:: json
+
+   {"type": "command", "argument": {"type": "bool"}, "result": {"type": "bool"}}
 
 
 Transport Example

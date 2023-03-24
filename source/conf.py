@@ -124,7 +124,7 @@ class SECoPLexer(RegexLexer):
              bygroups(Token.Generic.Prompt, Token.Whitespace, Token.String)),
             # generic request/reply with JSON reply potentially broken into
             # multiple lines
-            (r'(?s)(?:([><])( +))?(\w+)(?:( +)([\w.]+)(:\w+)?)?( +)(\{)',
+            (r'(?s)([><])( +)(\S+)(?:( )(\S+)(:\w+)?)?( )(\{)',
              bygroups(
                  Token.Generic.Prompt,
                  Token.Whitespace,
@@ -137,7 +137,7 @@ class SECoPLexer(RegexLexer):
              ),
              'json'),
             # generic single line request/reply
-            (r'(?:([><])( +))?(\w+)(?:( +)([\w.]+)(:\w+)?)?(?:( +)(.*?))?$',
+            (r'([><])( +)(\S+)(?:( )(\S+)(:\w+)?)?(?:( )(.*?))?$',
              bygroups(
                  Token.Generic.Prompt,
                  Token.Whitespace,
