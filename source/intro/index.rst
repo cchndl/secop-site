@@ -48,25 +48,26 @@ We will format the answer a bit, since it is longer than the usual messages we w
 .. code::
 
     < describing . {
-       "equipment_id":"introduction_node",
-       "description":"a basic example",
-       "modules" : {
-        "outside" : {
-         "interface_classes" : ["Readable"],
-         "implementation":"example.sensors.Temperature",
-         "accessibles" : {
-          "description":
-          "value":{
-           "datainfo":{
-            "type":"double",
-             "unit":"C"
-           },
-           "description":"temperature outside",
-           "readonly":true
+        "equipment_id": "introduction_node",
+        "description": "a basic example",
+        "modules": {
+          "outside": {
+            "interface_classes": ["Readable"],
+            "implementation": "example.sensors.Temperature",
+            "accessibles": {
+              "description": {
+                "value": {
+                  "datainfo": {
+                    "type": "double",
+                    "unit": "C"
+                  },
+                  "description": "temperature outside",
+                  "readonly": true
+                }
+              }
+            }
           }
-         }
         }
-       }
       }
 
 We asked the SECNode to describe itself to us, and now we can interact with specific parts of the SECNode.
