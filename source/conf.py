@@ -41,10 +41,16 @@ highlight_language = 'secop'
 # ones.
 extensions = [
     'sphinx.ext.todo',
+    'sphinx.ext.extlinks',
     'sphinx_design',
 ]
 
 todo_include_todos = True
+
+extlinks = {
+    'issue' : ('https://github.com/SampleEnvironment/SECoP/blob/master/protocol/issues/%s.rst',
+    'SECoP Issue %s')
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

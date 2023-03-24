@@ -53,7 +53,7 @@ Datatype to be used for all physical quantities.
     If the relative resolution is not given or not better than 1.2e-7, single precision floats
     may be used in the ECS.
 
-    :related issue: `SECoP Issue 42: Requirements of datatypes`_
+    :related issue: :issue:`042 Requirements of datatypes`
 
 Optional Data Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,7 +70,7 @@ Optional Data Properties
     SHOULD be given, if meaningful. Unitless if omitted or empty string.
     Preferably SI-units (including prefix) SHOULD be used.
 
-    :related: `SECoP Issue 43: Parameters and units`_
+    :related: :issue:`043 Parameters and units`
 
 ``"absolute_resolution"``
     JSON-number specifying the smallest difference between distinct values.
@@ -88,7 +88,7 @@ Optional Data Properties
 
     ``max(absolute_resolution, abs(value) * relative_resolution)``
 
-    :related: `SECoP Issue 49: Precision of Floating Point Values`_
+    :related: :issue:`049 Precision of Floating Point Values`
 
 ``"fmtstr"``
     string as a hint on how to format numeric parameters for the user.
@@ -156,7 +156,7 @@ Optional Data Properties
 
     ``max(absolute_resolution, abs(value) * relative_resolution)``
 
-    :related: `SECoP Issue 49: Precision of Floating Point Values`_
+    :related: :issue:`049 Precision of Floating Point Values`
 
 ``"fmtstr"``
     string as a hint on how to format numeric parameters for the user.
@@ -180,7 +180,7 @@ an integer JSON-number
 for example ``1255`` meaning 125.5 in the above example.
 
 
-:related issue: `SECoP Issue 44: Scaled integers`_.
+:related issue: :issue:`044 Scaled integers`.
 
 .. _int:
 .. _integer:
@@ -416,7 +416,7 @@ as JSON-object
 
 example: ``{"x": 0.5, "y": 1}``
 
-:related issue: `SECoP Issue 35: Partial structs`_
+:related issue: :issue:`035 Partial Structs`
 
 
 .. _command:
@@ -459,22 +459,3 @@ Example:
     > do module:invert true
     < done module:invert [false,{t:123456789.2}]
 
-.. _`Interface Classes and Features`: Interface%20Classes%20and%20Features.rst
-.. DO NOT TOUCH --- following links are automatically updated by issue/makeissuelist.py
-.. _`SECoP Issue 3: Timestamp Format`: issues/003%20Timestamp%20Format.rst
-.. _`SECoP Issue 4: The Timeout SEC Node Property`: issues/004%20The%20Timeout%20SEC%20Node%20Property.rst
-.. _`SECoP Issue 6: Keep Alive`: issues/006%20Keep%20Alive.rst
-.. _`SECoP Issue 7: Time Synchronization`: issues/007%20Time%20Synchronization.rst
-.. _`SECoP Issue 8: Groups and Hierarchy`: issues/008%20Groups%20and%20Hierarchy.rst
-.. _`SECoP Issue 9: Module Meaning`: issues/009%20Module%20Meaning.rst
-.. _`SECoP Issue 26: More Module Meanings`: issues/026%20More%20Module%20Meanings.rst
-.. _`SECoP Issue 35: Partial structs`: issues/035%20Partial%20Structs.rst
-.. _`SECoP Issue 36: Dynamic units`: issues/036%20Dynamic%20units.rst
-.. _`SECoP Issue 37: Clarification of status`: issues/037%20Clarification%20of%20status.rst
-.. _`SECoP Issue 38: Extension mechanisms`: issues/038%20Extension%20mechanisms.rst
-.. _`SECoP Issue 42: Requirements of datatypes`: issues/042%20Requirements%20of%20datatypes.rst
-.. _`SECoP Issue 43: Parameters and units`: issues/043%20Parameters%20and%20units.rst
-.. _`SECoP Issue 44: Scaled integers`: issues/044%20Scaled%20integers.rst
-.. _`SECoP Issue 49: Precision of Floating Point Values`: issues/049%20Precision%20of%20Floating%20Point%20Values.rst
-.. _`SECoP Issue 59: set_mode and mode instead of some commands`: issues/059%20set_mode%20and%20mode%20instead%20of%20some%20commands.rst
-.. DO NOT TOUCH --- above links are automatically updated by issue/makeissuelist.py

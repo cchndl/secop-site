@@ -68,7 +68,7 @@ Optional SEC Node Properties
 ``"timeout"``
      value in seconds, a SEC node should be able to respond within
      a time well below this value. (i.e. this is a reply-timeout.)
-     Default: 10 sec, *see* `SECoP Issue 4: The Timeout SEC Node Property`_
+     Default: 10 sec, *see* :issue:`004 The Timeout SEC Node Property`
 
 
 Module Description
@@ -117,7 +117,7 @@ Optional Module Properties
      The lowercase version of a path component must not match the lowercase version of any module name on
      the same SEC node.
 
-     :related issue: `SECoP Issue 8: Groups and Hierarchy`_
+     :related issue: :issue:`008 Groups and Hierarchy`
 
 ``"meaning"``
     tuple, with the following two elements:
@@ -139,9 +139,9 @@ Optional Module Properties
 
         ``_regulation`` may be postfixed, if the quantity generating module is different from the
         (closer to the sample) relevant measuring device. A regulation device MUST have an
-        `interface classes`_ of at least ``Writable``.
+        :ref:`interface class <interface-classes>` of at least ``Writable``.
 
-        :related issue: `SECoP Issue 26: More Module Meanings`_
+        :related issue: :issue:`026 More Module Meanings`
 
     2.  a value describing the importance, with the following values:
 
@@ -153,7 +153,7 @@ Optional Module Properties
         Intermediate values might be used. The range for each category starts at the indicated value minus 5
         and ends below the indicated value plus 5.
 
-        :related issue: `SECoP Issue 9: Module Meaning`_
+        :related issue: :issue:`009 Module Meaning`
 
 .. _implementor:
 
@@ -203,7 +203,7 @@ Optional Accessible Properties
     The lowercase version of a path component must not match the lowercase version of any module name or accessible on
     the same SEC node.
 
-    :related issue: `SECoP Issue 8: Groups and Hierarchy`_
+    :related issue: :issue:`008 Groups and Hierarchy`
 
     .. admonition:: Remark
 
@@ -248,25 +248,5 @@ an ECS should be prepared to handle anything here.
 .. note::
     An ECS which is not programmed to be aware about a specific custom property
     must ignore it.
-
-.. _`Interface Classes and Features`: Interface%20Classes%20and%20Features.rst
-.. DO NOT TOUCH --- following links are automatically updated by issue/makeissuelist.py
-.. _`SECoP Issue 3: Timestamp Format`: issues/003%20Timestamp%20Format.rst
-.. _`SECoP Issue 4: The Timeout SEC Node Property`: issues/004%20The%20Timeout%20SEC%20Node%20Property.rst
-.. _`SECoP Issue 6: Keep Alive`: issues/006%20Keep%20Alive.rst
-.. _`SECoP Issue 7: Time Synchronization`: issues/007%20Time%20Synchronization.rst
-.. _`SECoP Issue 8: Groups and Hierarchy`: issues/008%20Groups%20and%20Hierarchy.rst
-.. _`SECoP Issue 9: Module Meaning`: issues/009%20Module%20Meaning.rst
-.. _`SECoP Issue 26: More Module Meanings`: issues/026%20More%20Module%20Meanings.rst
-.. _`SECoP Issue 35: Partial structs`: issues/035%20Partial%20Structs.rst
-.. _`SECoP Issue 36: Dynamic units`: issues/036%20Dynamic%20units.rst
-.. _`SECoP Issue 37: Clarification of status`: issues/037%20Clarification%20of%20status.rst
-.. _`SECoP Issue 38: Extension mechanisms`: issues/038%20Extension%20mechanisms.rst
-.. _`SECoP Issue 42: Requirements of datatypes`: issues/042%20Requirements%20of%20datatypes.rst
-.. _`SECoP Issue 43: Parameters and units`: issues/043%20Parameters%20and%20units.rst
-.. _`SECoP Issue 44: Scaled integers`: issues/044%20Scaled%20integers.rst
-.. _`SECoP Issue 49: Precision of Floating Point Values`: issues/049%20Precision%20of%20Floating%20Point%20Values.rst
-.. _`SECoP Issue 59: set_mode and mode instead of some commands`: issues/059%20set_mode%20and%20mode%20instead%20of%20some%20commands.rst
-.. DO NOT TOUCH --- above links are automatically updated by issue/makeissuelist.py
 
 .. _interface classes: :ref:`interface classes`
