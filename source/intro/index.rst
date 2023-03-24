@@ -35,7 +35,7 @@ The SECNode replies with the version number of the protocol that it wants to spe
 
     < ISSE,SECoP,V2019-09-16,v1.0
 
-Great! 
+Great!
 So we know, that we are talking to something that knows SECoP, but we do not know yet, what we are talking to.
 That is, what we will find out with next message:
 
@@ -84,4 +84,5 @@ SECNodes
 
 Implementing SECNodes is best done with one of the preexisting frameworks.
 
-Depending on your background or the technologies already in use with your facility, you can choose the :doc:`implemenation<../libs>` that suits your needs best.
+Depending on your background or the technologies already in use with your
+facility, you can choose the :doc:`implemenation <../libs>` that suits your needs best.
