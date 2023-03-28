@@ -23,6 +23,7 @@ Welcome to SECoP!
 
     contact
     ISSE <https://sampleenvironment.org/>
+    impressum
 
 .. grid::
 
