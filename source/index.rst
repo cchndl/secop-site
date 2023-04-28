@@ -15,7 +15,7 @@ Welcome to SECoP!
     :maxdepth: 1
     :hidden:
 
-    libs
+    implementations/index
 
 .. toctree::
     :maxdepth: 1
@@ -66,7 +66,7 @@ Welcome to SECoP!
 
    .. grid-item::
 
-      .. button-ref:: libs
+      .. button-ref:: implementations/index
          :color: danger
          :shadow:
 
@@ -143,5 +143,5 @@ implementations.
 
 See the :doc:`Specification <spec1-0/index>` section for the full specification.
 
-In :doc:`Implementations <libs>` you can see the known implementations, which
+In :doc:`Implementations <implementations/index>` you can see the known implementations, which
 cover a wide range of use cases and technologies.

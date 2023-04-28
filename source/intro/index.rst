@@ -86,4 +86,4 @@ SECNodes
 Implementing SECNodes is best done with one of the preexisting frameworks.
 
 Depending on your background or the technologies already in use with your
-facility, you can choose the :doc:`implemenation <../libs>` that suits your needs best.
+facility, you can choose the :doc:`implemenation <../implementations/index>` that suits your needs best.
