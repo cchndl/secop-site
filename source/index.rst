@@ -39,7 +39,8 @@ Welcome to SECoP!
    .. grid-item::
 
       The SECoP (Sample Environment Communication Protocol) is an Inclusive, Simple
-      and Self Explaining (ISSE) communication protocol.
+      and Self Explaining (ISSE) communication protocol, intended as a common standard
+      for interfacing sample environment equipment and instrument control software.
       It is, coincidentally, developed by `ISSE
       <https://sampleenvironment.org/>`_.
 
@@ -83,59 +84,23 @@ Welcome to SECoP!
       their work flow (rewrite drivers completely or organize and handle hardware in a
       specific way to fulfill SECoP requirements).
 
-   .. grid-item::
-      :columns: 4
-
-      .. image:: _static/landing_1_cdbs_1.jpg
-         :target: https://ess.eu/
-         :width: 50 %
-         :align: right
-
-.. grid::
-   :gutter: 5
-
-   .. grid-item::
-      :columns: 4
-
-      .. image:: _static/technology-connections-ss-1920-800x459.gif
-         :target: https://fz-juelich.de/
-         :width: 90 %
 
    .. grid-item::
 
       **Simple** means it should be easy to integrate and to use.
 
-.. grid::
-   :gutter: 5
-
    .. grid-item::
 
       **Self Explaining** means that with SECoP, not only the pure data is transported. It
-      also transports meta data, which allows environment control software to
-      configure by itself.
+      also transports a human and machine readable description, which allows environment control software to configure by itself.
+
 
    .. grid-item::
 
-      .. image:: _static/heldele_automation_gmh-startseite-slider-bosch_rexroth_partner-1920x1080__002_.webp
-         :target: https://mlz-garching.de/
-         :width: 65 %
-         :align: right
-
-
-.. grid::
-   :gutter: 5
+      **Metadata**: sample environment related metadata is made available and accessible in a standard form.
 
    .. grid-item::
-
-      .. image:: _static/mag-v-15t-rgb.jpg
-         :target: https://psi.ch/
-         :width: 70 %
-
-   .. grid-item::
-
-      The benefit of SECoP will be to circulate expensive devices between different
-      facilities with minimised effort for configuration and integration. This should
-      result in an increased utilisation of expensive equipment.
+      circulating and integration of equipment will be made easier.
 
 The :doc:`Introduction <intro/index>` section has examples of the protocol, as
 well as example code to get started with writing drivers using one of our
@@ -145,3 +110,7 @@ See the :doc:`Specification <spec1-0/index>` section for the full specification.
 
 In :doc:`Implementations <implementations/index>` you can see the known implementations, which
 cover a wide range of use cases and technologies.
+
+Currently, as part of the project SECoP@HMC, the capabilities around metadata are extended to allow easier interfacing with metadata initiatives working further up the stack.
+
+.. image:: _static/secophmc.svg
