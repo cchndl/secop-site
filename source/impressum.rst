@@ -44,7 +44,7 @@ Die Internet-Seiten des MLZ enthalten Links auf die Web-Seiten Dritter. Diese Li
 Datenschutz
 -----------
 
-Unsere Datenschutzerklärung finden Sie hier.
+Unsere Datenschutzerklärung finden Sie :doc:`hier <privacy-policy>`.
 
 Abkürzungen
 -----------
