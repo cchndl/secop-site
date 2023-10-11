@@ -5,6 +5,7 @@ Frappy
 Frappy is a Pyhon-based framework for writing both SECNodes and SECoP clients.
 
 .. image:: images/frappy.svg
+   :align: center
 
 Workflow for SECNodes
 ~~~~~~~~~~~~~~~~~~~~~
