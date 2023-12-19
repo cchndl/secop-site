@@ -10,6 +10,7 @@ Welcome to SECoP!
 
     intro/index
     spec1-0/index
+    split/index
 
 .. toctree::
     :maxdepth: 1
